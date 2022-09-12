@@ -8,7 +8,9 @@ class ApplicationController < ActionController::API
 
   def render_not_found_response(not_found)
   # custom message
-    render json: { error: "#{not_found.model} not found" }, status: :not_found
+
+  render json: { error: "#{not_found.model} not found" }, status: :not_found
+
   end
 
   def render_unprocessable_entity_response(invalid)
