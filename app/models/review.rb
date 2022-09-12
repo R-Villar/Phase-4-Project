@@ -6,5 +6,4 @@ class Review < ApplicationRecord
   validates :title, length: { in: 5..15 }
   validates :user_review, length: { in: 5..250 }
  
-
 end

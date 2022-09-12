@@ -37,6 +37,7 @@ end
 # u2= User.create(icon: "icon image", username: "catlover123", email: "catlover123@gmail.com", password_digest: "ilovecats")
 
 puts"creating review seeds"
+
 15.times do Review.create(user_id:rand(1..15),
                     toy_id:rand(1..10),
                     title: Faker::App.name,
@@ -46,5 +47,6 @@ puts"creating review seeds"
 end
 # r1= Review.create(user_id: 1, toy_id: 1, title: "Great Toy", user_review: "love this toy!", rating: 10, location: "United States")
 # r2= Review.create(user_id: 2, toy_id: 2, title: "Not the best toy", user_review: "my dog didn't like this", rating: 1, location: "Mexico")
+
 
 puts"done!"
