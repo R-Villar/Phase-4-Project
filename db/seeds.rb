@@ -15,7 +15,7 @@ u1= User.create(icon: "insert icon", username: "doglover123", email: "doglover12
 u2= User.create(icon: "insert icon", username: "catlover123", email: "catlover123@gmail.com", password_digest: "ilovecats")
 
 puts"creating review seeds"
-r1= Review.create(user_id: u2.id, toy_id: t1.id, title: "Great Toy", user_review: "love this toy!", rating: 10, location: "United States")
-r2= Review.create(user_id: u1.id, toy_id: t2.id, title: "Not the best toy", user_review: "my dog didn't like this", rating: 1, location: "Mexico")
+r1= Review.create(user_id: 1, toy_id: 1, title: "Great Toy", user_review: "love this toy!", rating: 10, location: "United States")
+r2= Review.create(user_id: 2, toy_id: 2, title: "Not the best toy", user_review: "my dog didn't like this", rating: 1, location: "Mexico")
 
 puts"done!"
