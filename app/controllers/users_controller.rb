@@ -5,12 +5,13 @@ class UsersController < ApplicationController
     end
 
     def show 
-        user = find_user
-        render json: user, status: :ok
+        # user = find_user
+        render json: @current_user, status: :ok
     end
 
     def create
         user = User.create!(user_params)
+        session[:user_id] = user.id
         render json: user, status: :created
     end
 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
 
     end
 
-    def find_user
-        User.find(params[:id])
-    end
+    # def find_user
+    #     User.find(params[:id])
+    # end
 end
