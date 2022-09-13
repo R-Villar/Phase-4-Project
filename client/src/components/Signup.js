@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Signup({updatedUser}) {
+function Signup({updateUser}) {
 
 	const [formData, setFormData] = useState({
 		username: "",
@@ -36,7 +36,9 @@ function Signup({updatedUser}) {
 	}
 
 	return (
-		<form onSubmit={onSubmit}>
+		<div>
+			
+			<form onSubmit={onSubmit}>
 			<label>Username</label>
 			<input
 				type='text'
@@ -63,6 +65,9 @@ function Signup({updatedUser}) {
 
 			<input type='submit' value='Sign up!' />
 		</form>
+		</div>
+		
+		
 	);
 }
 
