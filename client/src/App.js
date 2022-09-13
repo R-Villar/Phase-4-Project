@@ -7,10 +7,11 @@ import ToyContainer from './components/ToyContainer';
 import { Route } from 'react-router-dom';
 import Login from './components/Login';
 import Cart from './components/Cart';
+import Signup from './components/Signup';
 
 function App() {
 const [currentUser, setCurrentUser] = useState("")
-console.log(currentUser)
+// console.log(currentUser)
 const updateUser = (user) => setCurrentUser(user)
 const [toys, setToys] = useState([])
 const [errors, setErrors] = useState(false)
@@ -18,12 +19,12 @@ const [errors, setErrors] = useState(false)
 //get toys
 useEffect(() => {
   fetch("/toys").then(res => {
-    console.log(res)
+    // console.log(res)
     if(res.ok){
       res.json().then(setToys)
     } else {
       res.json().then((data) => {
-        console.log(data)
+        // console.log(data)
         setErrors(data.error)
       });
     }
@@ -35,15 +36,18 @@ useEffect(() => {
     welcome back {currentUser.username}
       <Navbar/>
       <Switch>
-        <Route exact path='/'>
-         <Home updateUser={updateUser} />
+        <Route exact path='/home'>
+          <Home />
           <ToyContainer toys={toys}/>
         </Route>
         <Route exact path='/login'>
-          <Login/>
+          <Login />
+        </Route>
+        <Route exact path='/signup'>
+          <Signup updateUser={updateUser} />
         </Route>
         <Route exact path='/cart'>
-          <Cart/>
+          <Cart />
         </Route>
       </Switch>
     </div>
