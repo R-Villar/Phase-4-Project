@@ -1,11 +1,14 @@
 
+import Login from "./Login"
+import Signup from "./Signup";
 
-function Home() {
+function Home({updateUser}) {
 
     return (
 		<div>
-		
-			home page
+			Hello home
+			<Signup updateUser={updateUser} />
+			<Login updateUser={updateUser} />
 		</div>
 	);
 }
