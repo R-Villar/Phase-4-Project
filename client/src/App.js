@@ -41,10 +41,12 @@ useEffect(() => {
           <ToyContainer toys={toys}/>
         </Route>
         <Route exact path='/login'>
-          <Login />
+
+         <Login updateUser={updateUser}/>
         </Route>
         <Route exact path='/signup'>
           <Signup updateUser={updateUser} />
+
         </Route>
         <Route exact path='/cart'>
           <Cart />
