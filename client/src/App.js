@@ -40,10 +40,10 @@ useEffect(() => {
           <ToyContainer toys={toys}/>
         </Route>
         <Route exact path='/login'>
-          <Login/>
+          <Login updateUser={updateUser}/>
         </Route>
         <Route exact path='/cart'>
-          <Cart/>
+          <Cart />
         </Route>
       </Switch>
     </div>
