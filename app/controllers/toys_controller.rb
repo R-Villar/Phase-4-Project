@@ -1,4 +1,8 @@
 class ToysController < ApplicationController
 
-    validates :name, :price, :brand, :image, :description presence: true
+     #GET '/toys'
+     def index
+        render json: Toy.all, status: :ok
+    end
+   
 end
