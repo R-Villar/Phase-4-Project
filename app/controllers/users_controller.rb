@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    skip_before_action :authenticate_user #except: [:create, :show]
 
     def index 
         render json: User.all, status: :ok
@@ -6,7 +7,12 @@ class UsersController < ApplicationController
 
     def show 
         # user = find_user
-        render json: @current_user, status: :ok
+        # render json: @current_user, status: :ok
+        if current_user
+            render json: current_user, status: :ok
+        else
+            render json:{ errors: "No current session stored"}, status: :unauthorized
+        end
     end
 
     def create

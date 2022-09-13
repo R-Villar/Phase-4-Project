@@ -1,5 +1,6 @@
 class ToysController < ApplicationController
-
+    skip_before_action :authenticate_user
+    
      #GET '/toys'
      def index
         render json: Toy.all, status: :ok
