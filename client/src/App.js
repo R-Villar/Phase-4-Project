@@ -8,9 +8,10 @@ import { Route } from 'react-router-dom';
 import Login from './components/Login';
 import Cart from './components/Cart';
 
-
 function App() {
-
+const [currentUser, setCurrentUser] = useState("")
+console.log(currentUser)
+const updateUser = (user) => setCurrentUser(user)
 const [toys, setToys] = useState([])
 const [errors, setErrors] = useState(false)
 
@@ -31,10 +32,11 @@ useEffect(() => {
 
   return (
     <div className="App">
+    welcome back {currentUser.username}
       <Navbar/>
       <Switch>
         <Route exact path='/'>
-          <Home/>
+         <Home updateUser={updateUser} />
           <ToyContainer toys={toys}/>
         </Route>
         <Route exact path='/login'>
@@ -44,7 +46,6 @@ useEffect(() => {
           <Cart/>
         </Route>
       </Switch>
-  
     </div>
   )
 }
