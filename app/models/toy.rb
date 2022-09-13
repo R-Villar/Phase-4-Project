@@ -4,4 +4,5 @@ class Toy < ApplicationRecord
 
     validates :name, :price, :image, :brand, presence: true
     #validates :description 
+
 end

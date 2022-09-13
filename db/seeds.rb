@@ -48,4 +48,5 @@ r2= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "So cool!", u
 r3= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Disapointing", user_review: "When unpackaged though, we both found that other than an image on the back of the box, it was a little hard to understand what it was meant to do and what each item was for.", rating: 3, location: "Texas")
 r4= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Worth the money", user_review: "Recently purchased this for my kids who are finally old enough to appreciate it and they love it so much!", rating: 10, location: "South Dakota")
 
+
 puts"done!"
