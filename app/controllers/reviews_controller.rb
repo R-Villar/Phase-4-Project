@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+     skip_before_action :authenticate_user
     #GET '/reviews'
     def index
         render json: Review.all, status: :ok
