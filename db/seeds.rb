@@ -5,14 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Clearing db..."
 
-Toy.destroy_all
-User.destroy_all
-Review.destroy_all
-
-Faker::Internet.unique.clear
-Faker::Restaurant.unique.clear
+# Faker::Internet.unique.clear
+# Faker::Restaurant.unique.clear
 
 puts"creating toy seeds"
 
@@ -28,25 +23,30 @@ t9= Toy.create(name:"Spidey and His Amazing Friends Web Quarters Playset", price
 t10= Toy.create(name:"Marvel Bend and Flex, Flex Rider Spider-Man and 2-In-1 Motorcycle", price: 21.99, brand: "Marvel", image: "http://slimages.macys.com/is/image/MCY/products/0/optimized/19079336_fpx.tif", description: "Twist! Turn! Kids can imagine speeding to the scene on a motorcycle then changing the vehicle into high-tech weapons to thwart the villain! Kids can bend flex pose and play with their favorite Marvel Super Heroes with these super agile Bend and Flex Figures! Collect characters inspired by Marvel Universe with a twist (each sold separately).")
 
 puts"creating user seeds"
-15.times do User.create(icon: "icon image",
-                    username: Faker::Internet.unique.username(specifier: 2..12),
-                    email: Faker::Internet.unique.email,
-                    password_digest: Faker::Internet.unique.password(min_length: 6, max_length: 20))
-end
-# u1= User.create(icon: "icon image", username: "doglover123", email: "doglover123@gmail.com", password_digest: "ilovedogs")
-# u2= User.create(icon: "icon image", username: "catlover123", email: "catlover123@gmail.com", password_digest: "ilovecats")
+# 15.times do User.create(icon: "icon image",
+#                     username: Faker::Internet.unique.username(specifier: 2..12),
+#                     email: Faker::Internet.unique.email,
+#                     password_digest: Faker::Internet.unique.password(min_length: 6, max_length: 20))
+# end
+u1= User.create(icon: "icon image", username: "shaquille.oatmeal", email: "jewel73@hotmail.com", password_digest: "3QZ70G!6nx9q")
+u2= User.create(icon: "icon image", username: "fast_and_the_curious", email: "dorthy_kshlerin@gmail.com", password_digest: "36Lfd&*2s9*N")
+u3= User.create(icon: "icon image", username: "cute.as.ducks", email: "lizzie15@hotmail.com", password_digest: "i!62fUE50^OO")
+u4= User.create(icon: "icon image", username: "HairyPoppins", email: "kitty_botsford96@yahoo.com", password_digest: "7LA!MCq5n25l")
+u5= User.create(icon: "icon image", username: "me_for_president", email: "presley89@gmail.com", password_digest: "q7re&X3V!8QW")
+
 
 puts"creating review seeds"
-
-15.times do Review.create(user_id:rand(1..15),
-                    toy_id:rand(1..10),
-                    title: Faker::App.name,
-                    user_review: Faker::Restaurant.unique.review,
-                    rating:rand(1..10),
-                    location:Faker::Address.state)
-end
-# r1= Review.create(user_id: 1, toy_id: 1, title: "Great Toy", user_review: "love this toy!", rating: 10, location: "United States")
-# r2= Review.create(user_id: 2, toy_id: 2, title: "Not the best toy", user_review: "my dog didn't like this", rating: 1, location: "Mexico")
+# 15.times do Review.create(user_id:rand(1..15),
+#                     toy_id:rand(1..10),
+#                     title: Faker::App.name,
+#                     user_review: Faker::Restaurant.unique.review,
+#                     rating:rand(1..10),
+#                     location:Faker::Address.state)
+# end
+r1= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Great Toy", user_review: "Let my nephew play with this toy and he had a lot of fun.", rating: 10, location: "California")
+r2= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "So cool!", user_review: "Really good product, my daughter enjoyed playing with it and liked multi option of the toy. That expand his playing time and options of playing. The toy is good quality, easy to take out of the box which is plus as sometimes you spend ages to do it. Generally I would recommend it.", rating: 10, location: "Vermont")
+r3= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Disapointing", user_review: "When unpackaged though, we both found that other than an image on the back of the box, it was a little hard to understand what it was meant to do and what each item was for.", rating: 3, location: "Texas")
+r4= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Worth the money", user_review: "Recently purchased this for my kids who are finally old enough to appreciate it and they love it so much!", rating: 10, location: "South Dakota")
 
 
 puts"done!"
