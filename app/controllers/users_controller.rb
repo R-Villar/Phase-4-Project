@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     end
 
     def show 
-
         # render json: find_user, serializer: UserReviewsSerializer
         if current_user
             render json: current_user, status: :ok, serializer: UserReviewsSerializer

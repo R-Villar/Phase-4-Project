@@ -12,30 +12,29 @@ import Signup from './components/Signup';
 import ToyPage from './components/Toypage';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
-  
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+	const [currentUser, setCurrentUser] = useState(null)
 
-  // const updateUser = (user) => setCurrentUser(user)
-  const [toys, setToys] = useState([])
-//   const [reviews, setReviews] = useState([])
-  const [errors, setErrors] = useState(false)
+	const [isAuthenticated, setIsAuthenticated] = useState(true);
+	const [selectedToy, setSelectedToy] = useState([]);
+	// const updateUser = (user) => setCurrentUser(user)
+	const [toys, setToys] = useState([])
+	//   const [reviews, setReviews] = useState([])
+	const [errors, setErrors] = useState(false)
 
-
-  //get toys
-  useEffect(() => {
-    fetch('/toys').then(res => {
-      // console.log(res)
-      if(res.ok){
-        res.json().then(setToys)
-      } else {
-        res.json().then((data) => {
-          // console.log(data)
-          setErrors(data.error)
-        });
-      }
-    });
-  }, [])
+	//get toys
+	useEffect(() => {
+	fetch('/toys').then(res => {
+		// console.log(res)
+		if(res.ok){
+		res.json().then(setToys)
+		} else {
+		res.json().then((data) => {
+			// console.log(data)
+			setErrors(data.error)
+		});
+		}
+	});
+	}, [])
 
 //get reviews
 // useEffect(() => {
@@ -90,12 +89,12 @@ console.log(currentUser)
   return (
 		<div className='App'>
 			{/* welcome back {currentUser.username} */}
-     
+
 			<Navbar />
 			<Switch>
 				<Route exact path='/home'>
 					<Home currentUser={currentUser} />
-					<ToyContainer toys={toys} />
+					<ToyContainer toys={toys} setSelectedToy={setSelectedToy} />
 				</Route>
 				<Route exact path='/login'>
 					<Login setCurrentUser={setCurrentUser} />
@@ -106,11 +105,12 @@ console.log(currentUser)
 				<Route exact path='/cart'>
 					<Cart />
 				</Route>
-        <Route exact path='/toys/:id'>
-					<ToyPage 
+				<Route exact path='/toys/:id'>
+					<ToyPage
 						currentUser={currentUser}
+						selectedToy={selectedToy}
 						// addReviews={addReviews}
-						/>
+					/>
 				</Route>
 			</Switch>
 		</div>
