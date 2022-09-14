@@ -9,20 +9,21 @@ import Button from '@mui/material/Button';
 import * as React from 'react';
 import {useState} from 'react';
 import Input from '@mui/material/Input';
+import {useParams} from "react-router-dom";
 
-function Popup({open, handleClose, addReviews, currentUser, toy}) {
+function Popup({open, handleClose, addReviews, currentUser}) {
 
-//  console.log(toy)
+    let {id} = useParams();
     const [formData, setFormData] = useState({
-        // user_id:currentUser.id,
-        toy_id:toy.id,  
+        user_id:currentUser.id,
+        toy_id:id,  
         title: '',
         user_review: '',
         rating: '',
         location: ''
       })
-    
- 
+    // hello world 
+  // console.log(formData)
 
     const [errors, setErrors] = useState([])
 

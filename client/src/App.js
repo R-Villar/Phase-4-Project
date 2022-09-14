@@ -12,13 +12,13 @@ import Signup from './components/Signup';
 import ToyPage from './components/Toypage';
 
 function App() {
-	const [currentUser, setCurrentUser] = useState(null)
+	const [currentUser, setCurrentUser] = useState('')
 
 	const [isAuthenticated, setIsAuthenticated] = useState(true);
 	const [selectedToy, setSelectedToy] = useState([]);
 	// const updateUser = (user) => setCurrentUser(user)
 	const [toys, setToys] = useState([])
-	//   const [reviews, setReviews] = useState([])
+	  const [reviews, setReviews] = useState([])
 	const [errors, setErrors] = useState(false)
 
 	//get toys
@@ -36,24 +36,10 @@ function App() {
 	});
 	}, [])
 
-//get reviews
-// useEffect(() => {
-//   fetch('/reviews').then(res => {
-//     // console.log(res)
-//     if(res.ok){
-//       res.json().then(setReviews)
-//     } else {
-//       res.json().then((data) => {
-//         // console.log(data)
-//         setReviews(data.error)
-//       });
-//     }
-//   });
-// }, [])
 
-console.log(currentUser)
+console.log(reviews)
 
-// const addReviews = (review) => setReviews(current => [...current,review])
+const addReviews = (review) => setReviews(current => [...current,review])
 
 // const updateReview = (updatedReview) => setReviews(current => {
 //   return current.map(review => {
@@ -88,7 +74,6 @@ console.log(currentUser)
 
   return (
 		<div className='App'>
-			{/* welcome back {currentUser.username} */}
 
 			<Navbar />
 			<Switch>
@@ -109,7 +94,7 @@ console.log(currentUser)
 					<ToyPage
 						currentUser={currentUser}
 						selectedToy={selectedToy}
-						// addReviews={addReviews}
+						addReviews={addReviews}
 					/>
 				</Route>
 			</Switch>
