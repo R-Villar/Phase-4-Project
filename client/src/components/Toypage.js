@@ -15,42 +15,38 @@ import Popup from "./Popup";
 // import Review from "./Review";
 
 
-function ToyPage({currentUser, selectedToy}) {
-	
-
-	// let {id} = useParams();
-	const [toy, setToy] = useState([]);
+function ToyPage({currentUser, selectedToy, addReviews}) {
+	let {id} = useParams();
+	// console.log(id)
+	const [toy, setToy] = useState({reviews: []});
 
 	const [errors, setErrors] = useState([]);
 
 	useEffect(() => {
-		fetch(`/toys/${selectedToy.id}`)
+		fetch(`/toys/${id}`)
 			.then((res) => res.json())
 			.then((toy) => {
 				setToy(toy);
 			});
-	}, [selectedToy.id]);
+	}, [id]);
 
-	const { reviews } = toy;
-	// const { title } = reviews
+	const {reviews} = toy;
+	console.log(selectedToy);
+	console.log(toy);
+	const displayReviews = reviews.map((review) => {
+		//    return  console.log(review.title)
 
-    console.log(reviews);
-	// const displayReviews = reviews.map(review =>{
-
-	//    return  console.log(review.title)
-
-	    // return (
-		// 	<div>
-		// 		<h1>Reviews</h1>
-		// 		<h2>{review.title} </h2>
-		// 		{review.user_review}
-		// 		<h3>{review.rating}</h3>
-		// 		<h4>{review.location}</h4>
-		// 		<h4>{review.created_at}</h4>
-		// 	</div>
-		// );
-	//     }
-	// )
+		return (
+			<div>
+				<h1>Reviews</h1>
+				<h2>{review.title} </h2>
+				{review.user_review}
+				<h3>{review.rating}</h3>
+				<h4>{review.location}</h4>
+				<h4>{review.created_at}</h4>
+			</div>
+		);
+	});
 
 	//handles popup for review
 	const [open, setOpen] = React.useState(false);
@@ -70,7 +66,7 @@ function ToyPage({currentUser, selectedToy}) {
 						<CardMedia
 							component='img'
 							height='400'
-							image={selectedToy.image}
+							image={toy.image}
 							alt='toy image'
 						/>
 						<CardContent>
@@ -79,28 +75,28 @@ function ToyPage({currentUser, selectedToy}) {
 								variant='h4'
 								component='div'
 							>
-								{selectedToy.name}
+								{toy.name}
 							</Typography>
 							<Typography
 								gutterBottom
 								variant='h6'
 								component='div'
 							>
-								{selectedToy.description}
+								{toy.description}
 							</Typography>
 							<Typography
 								gutterBottom
 								variant='h6'
 								component='div'
 							>
-								${selectedToy.price}
+								${toy.price}
 							</Typography>
 							<Typography
 								gutterBottom
 								variant='h6'
 								component='div'
 							>
-								{selectedToy.brand}
+								{toy.brand}
 							</Typography>
 							<Stack spacing={1}>
 								<Rating
@@ -117,13 +113,12 @@ function ToyPage({currentUser, selectedToy}) {
 									</Button>
 								</div>
 
-								{/* <Popup
+								<Popup
 									open={open}
 									handleClose={handleClose}
-									// addReviews = {addReviews}
+									addReviews={addReviews}
 									currentUser={currentUser}
-									// toy={toy}
-								/> */}
+								/>
 							</Stack>
 						</CardContent>
 					</CardActionArea>
@@ -132,7 +127,7 @@ function ToyPage({currentUser, selectedToy}) {
 			<div>
 				<React.Fragment>
 					<CssBaseline />
-					<Container fixed>{/* {displayReviews} */}</Container>
+					<Container fixed>{displayReviews}</Container>
 				</React.Fragment>
 			</div>
 		</div>
