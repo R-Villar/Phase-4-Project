@@ -8,7 +8,7 @@ class ToysController < ApplicationController
    
     #GET '/toys/:id'
     def show
-        render json: toy_id, status: :ok
+        render json: toy_id, status: :ok, serializer: ToyReviewsSerializer
     end
 
     private

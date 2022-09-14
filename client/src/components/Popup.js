@@ -14,7 +14,7 @@ function Popup({open, handleClose, addReviews, currentUser, toy}) {
 
 //  console.log(toy)
     const [formData, setFormData] = useState({
-        user_id:currentUser.id,
+        // user_id:currentUser.id,
         toy_id:toy.id,  
         title: '',
         user_review: '',

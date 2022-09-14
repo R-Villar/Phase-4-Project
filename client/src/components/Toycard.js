@@ -8,7 +8,7 @@ import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-import CardHeader from "@mui/material/CardHeader";
+import Grid from "@mui/material/Grid";
 
 const labels = {
   0.5: 'Useless',
@@ -28,11 +28,10 @@ function ToyCard({toy}){
 
   const value = 3.5;
   const {id} = toy
-
+  // console.log(toy)
     return(
 
     <Grid container
-    spacing={3}
     justifyContent='center'
     style={{minHeight: "10vh"}} >
       <Grid item xs={12} sm={4} md={4}>
