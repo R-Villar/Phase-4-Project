@@ -22,11 +22,11 @@ function Popup({open, handleClose, addReviews, currentUser}) {
         rating: '',
         location: ''
       })
-    // hello world 
-  // console.log(formData)
+
+  console.log(formData)
 
     const [errors, setErrors] = useState([])
-
+      console.log(errors)
     const handleChange = (e) => {
       // console.log(e.target.value)
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -55,59 +55,53 @@ function Popup({open, handleClose, addReviews, currentUser}) {
       }
 
 
-    return(
-        <div>
-           <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Please share your experience.</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                Your feedback will help other shoppers make good choices, and we'll use it to improve our products.
-                            </DialogContentText>
-                        <form onSubmit={onSubmit}>
-                        <TextField
-                            name="title"
-                            label="Review Title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            
-                            />
-                        <TextField
-                            required
-                            name="rating"
-                            label="Rating"
-                            type="number"
-                            value={formData.rating}
-                            onChange={handleChange}
+    return (
+		<div>
+			<Dialog open={open} onClose={handleClose}>
+				<DialogTitle>Please share your experience.</DialogTitle>
+				<DialogContent>
+					<DialogContentText>
+						Your feedback will help other shoppers make good
+						choices, and we'll use it to improve our products.
+					</DialogContentText>
+					<form onSubmit={onSubmit}>
+						<TextField
+							name='title'
+							label='Review Title'
+							value={formData.title}
+							onChange={handleChange}
+						/>
+						<TextField
+							required
+							name='rating'
+							label='Rating'
+							type='number'
+							value={formData.rating}
+							onChange={handleChange}
+						/>
 
-                            />
-                                
-                                <TextField
-                            name="user_review"
-                            label="Review"
-                            value={formData.user_review}
-                            onChange={handleChange}
-                            
-                            />
-                            <TextField
-                            name="location"
-                            label="Location"
-                            value={formData.location}
-                            onChange={handleChange}
-                            
-                            />
-                                <DialogActions>
-                                <Button onClick={handleClose}>Submit</Button>
-                                </DialogActions>
-
-                        </form>
-                        
-                        
-                     
-                        </DialogContent>
-            
-            </Dialog>
-        </div>
-    )
+						<TextField
+							name='user_review'
+							label='Review'
+							value={formData.user_review}
+							onChange={handleChange}
+						/>
+						<TextField
+							name='location'
+							label='Location'
+							value={formData.location}
+							onChange={handleChange}
+						/>
+						<DialogActions>
+							<Button type='submit' onClick={handleClose}>
+								Submit
+							</Button>
+						</DialogActions>
+					</form>
+				</DialogContent>
+			</Dialog>
+		</div>
+	);
 }
 
 export default Popup;

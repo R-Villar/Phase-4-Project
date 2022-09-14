@@ -37,7 +37,6 @@ function App() {
 	}, [])
 
 
-console.log(reviews)
 
 const addReviews = (review) => setReviews(current => [...current,review])
 

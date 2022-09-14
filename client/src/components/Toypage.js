@@ -37,7 +37,7 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 		//    return  console.log(review.title)
 
 		return (
-			<div>
+			<div key={review.id}>
 				<h1>Reviews</h1>
 				<h2>{review.title} </h2>
 				{review.user_review}
