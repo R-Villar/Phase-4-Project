@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,32 +12,34 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button';
 import Popup from "./Popup";
-import Review from "./Review";
+// import Review from "./Review";
 
 
-function ToyPage({ currentUser }) {
+function ToyPage({currentUser, selectedToy}) {
+	
 
-    // console.log(currentUser)
+	// let {id} = useParams();
+	const [toy, setToy] = useState([]);
 
-    let { id } = useParams()
-    const [toy, setToy] = useState([])
+	const [errors, setErrors] = useState([]);
 
-    useEffect( () => {
-        fetch(`/toys/${id}`)
-        .then( res => res.json() )
-        .then( toy => {setToy(toy)})
-        }, [ id ])
+	useEffect(() => {
+		fetch(`/toys/${selectedToy.id}`)
+			.then((res) => res.json())
+			.then((toy) => {
+				setToy(toy);
+			});
+	}, [selectedToy.id]);
 
-    const { image, price, name, description, reviews, brand } = toy
-    // const { title } = reviews
+	const { reviews } = toy;
+	// const { title } = reviews
 
-    console.log(reviews)
+    console.log(reviews);
+	// const displayReviews = reviews.map(review =>{
 
-    // const displayReviews = reviews.map(review =>{
+	//    return  console.log(review.title)
 
-        // console.log(review.title)
-        
-        // return (
+	    // return (
 		// 	<div>
 		// 		<h1>Reviews</h1>
 		// 		<h2>{review.title} </h2>
@@ -47,90 +49,95 @@ function ToyPage({ currentUser }) {
 		// 		<h4>{review.created_at}</h4>
 		// 	</div>
 		// );
-        // }
-    // )
+	//     }
+	// )
 
-    
-    // const [review, setReview] = useState([])
+	//handles popup for review
+	const [open, setOpen] = React.useState(false);
 
-    // useEffect( () => {
-    //     fetch(`/reviews/${id}`)
-    //         .then( res => res.json() )
-    //          .then( review => {setReview(review)})
-    //     }, [ id ])
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
 
-    //handles popup for review
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-return (
-	<div>
-		<Grid container spacing={2}>
-			<Card sx={{maxWidth: 400}}>
-				<CardActionArea>
-					<CardMedia
-						component='img'
-						height='400'
-						image={toy.image}
-						alt='toy image'
-					/>
-					<CardContent>
-						<Typography gutterBottom variant='h4' component='div'>
-							{toy.name}
-						</Typography>
-						<Typography gutterBottom variant='h6' component='div'>
-							{toy.description}
-						</Typography>
-						<Typography gutterBottom variant='h6' component='div'>
-							${toy.price}
-						</Typography>
-						<Typography gutterBottom variant='h6' component='div'>
-							{toy.brand}
-						</Typography>
-						<Stack spacing={1}>
-							<Rating
-								name='half-rating'
-								defaultValue={2.5}
-								precision={0.5}
-							/>
-							<div>
-								<Button
-									variant='outlined'
-									onClick={handleClickOpen}
-								>
-									Write a Review
-								</Button>
-							</div>
-
-							<Popup
-								open={open}
-								handleClose={handleClose}
-								// addReviews = {addReviews}
-								currentUser={currentUser}
-								toy={toy}
-							/>
-						</Stack>
-					</CardContent>
-				</CardActionArea>
-			</Card>
-		</Grid>
+	return (
 		<div>
-			<React.Fragment>
-				<CssBaseline />
-				<Container fixed>
-                     {/* {displayReviews}  */}
-                     </Container>
-			</React.Fragment>
+			<Grid container spacing={2}>
+				<Card sx={{maxWidth: 400}}>
+					<CardActionArea>
+						<CardMedia
+							component='img'
+							height='400'
+							image={selectedToy.image}
+							alt='toy image'
+						/>
+						<CardContent>
+							<Typography
+								gutterBottom
+								variant='h4'
+								component='div'
+							>
+								{selectedToy.name}
+							</Typography>
+							<Typography
+								gutterBottom
+								variant='h6'
+								component='div'
+							>
+								{selectedToy.description}
+							</Typography>
+							<Typography
+								gutterBottom
+								variant='h6'
+								component='div'
+							>
+								${selectedToy.price}
+							</Typography>
+							<Typography
+								gutterBottom
+								variant='h6'
+								component='div'
+							>
+								{selectedToy.brand}
+							</Typography>
+							<Stack spacing={1}>
+								<Rating
+									name='half-rating'
+									defaultValue={2.5}
+									precision={0.5}
+								/>
+								<div>
+									<Button
+										variant='outlined'
+										onClick={handleClickOpen}
+									>
+										Write a Review
+									</Button>
+								</div>
+
+								{/* <Popup
+									open={open}
+									handleClose={handleClose}
+									// addReviews = {addReviews}
+									currentUser={currentUser}
+									// toy={toy}
+								/> */}
+							</Stack>
+						</CardContent>
+					</CardActionArea>
+				</Card>
+			</Grid>
+			<div>
+				<React.Fragment>
+					<CssBaseline />
+					<Container fixed>{/* {displayReviews} */}</Container>
+				</React.Fragment>
+			</div>
 		</div>
-	</div>
-);
- }
+	);
+}
 
 
 export default ToyPage;
