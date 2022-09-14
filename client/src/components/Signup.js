@@ -37,7 +37,6 @@ function Signup({updateUser}) {
 
 	return (
 		<div>
-			
 			<form onSubmit={onSubmit}>
 			<label>Username</label>
 			<input
