@@ -1,12 +1,12 @@
 import { useState } from "react"
-
+import {useHistory} from "react-router-dom";
 
 function Login({setCurrentUser}) {
 	const [errors, setErrors] = useState([]);
-
+	const history = useHistory();
 	const [formData, setFormData] = useState({
 		username: "",
-		email: "",
+		email: ""
 	});
 
 	const handleChange = (e) => {
@@ -16,17 +16,9 @@ function Login({setCurrentUser}) {
 		});
 	};
 
-	// const {username, password} = formData;
-
 	function onSubmit(e) {
 		e.preventDefault();
-		// const user = {
-		// 	username,
-		// 	password,
-		// };
-		// console.log(user);
 
-		// login user
 		fetch("/login", {
 			method: "POST",
 			headers: {"Content-Type": "application/json"},
@@ -35,7 +27,7 @@ function Login({setCurrentUser}) {
 			if (response.ok) {
 				response.json().then((user) => {
 					setCurrentUser(user);
-					// use history to push the user to other page
+					history.push('/home');
 				});
 			} else {
 				// errors if login is incorrect
@@ -43,12 +35,6 @@ function Login({setCurrentUser}) {
 			}
 		});
 	}
-
-	// const handleChange = (e) => {
-	// 	const {name, value} = e.target
-	// 	setFormData({...formData, [name]: value})
-	// }
-
 
 	return (
 		<>

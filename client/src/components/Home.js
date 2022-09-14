@@ -1,11 +1,10 @@
 
-function Home() {
+function Home({currentUser}) {
 
-    return (
-		<div>
-			Hello home
-		</div>
-	);
+	return <div>
+		{/* displays username if the user is logged in */}
+		{currentUser? <p>Welcome back {currentUser.username}</p> : null }
+		</div>;
 }
 
 export default Home 

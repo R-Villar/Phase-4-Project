@@ -81,7 +81,6 @@ const addReviews = (review) => setReviews(current => [...current,review])
   if (!isAuthenticated) {
 		return <div></div>;
   }
-  // console.log(currentUser);
 
 
   if(errors) return <h1>{errors}</h1>
@@ -93,7 +92,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 			<Navbar />
 			<Switch>
 				<Route exact path='/home'>
-					<Home />
+					<Home currentUser={currentUser} />
 					<ToyContainer toys={toys} />
 				</Route>
 				<Route exact path='/login'>
