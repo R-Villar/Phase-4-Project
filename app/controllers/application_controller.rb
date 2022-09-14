@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
 
 
   def authenticate_user 
-    render json: { errors: {User: "Not Authorized"} }, status: :unauthorized unless @current_user
+    render json: { errors: {User: "Not Authorized"} }, status: :unauthorized unless current_user
   end
 
   def render_not_found_response(not_found)

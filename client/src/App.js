@@ -49,16 +49,13 @@ function App() {
   }
   console.log(currentUser);
 
-
-
-
   return (
 		<div className='App'>
 			{/* welcome back {currentUser.username} */}
 			<Navbar />
 			<Switch>
 				<Route exact path='/home'>
-					<Home />
+					<Home currentUser={currentUser} />
 					<ToyContainer toys={toys} />
 				</Route>
 				<Route exact path='/login'>
