@@ -22,9 +22,6 @@ function Popup({open, handleClose, addReviews, currentUser}) {
         rating: '',
         location: ''
       })
-      // hello
-
-  console.log(formData)
 
     const [errors, setErrors] = useState([])
       console.log(errors)
