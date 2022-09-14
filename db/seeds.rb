@@ -43,10 +43,10 @@ puts"creating review seeds"
 #                     rating:rand(1..10),
 #                     location:Faker::Address.state)
 # end
-r1= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Great Toy", user_review: "Let my nephew play with this toy and he had a lot of fun.", rating: 10, location: "California")
-r2= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "So cool!", user_review: "Really good product, my daughter enjoyed playing with it and liked multi option of the toy. That expand his playing time and options of playing. The toy is good quality, easy to take out of the box which is plus as sometimes you spend ages to do it. Generally I would recommend it.", rating: 10, location: "Vermont")
-r3= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Disapointing", user_review: "When unpackaged though, we both found that other than an image on the back of the box, it was a little hard to understand what it was meant to do and what each item was for.", rating: 3, location: "Texas")
-r4= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Worth the money", user_review: "Recently purchased this for my kids who are finally old enough to appreciate it and they love it so much!", rating: 10, location: "South Dakota")
+r1= Review.create(user_id: 1, toy_id: 1, title: "Great Toy", user_review: "Let my nephew play with this toy and he had a lot of fun.", rating: 10, location: "California")
+r2= Review.create(user_id: 2, toy_id: 1, title: "So cool!", user_review: "Really good product, my daughter enjoyed playing with it and liked multi option of the toy. That expand his playing time and options of playing. The toy is good quality, easy to take out of the box which is plus as sometimes you spend ages to do it. Generally I would recommend it.", rating: 10, location: "Vermont")
+r3= Review.create(user_id: 3, toy_id: 1, title: "Disapointing", user_review: "When unpackaged though, we both found that other than an image on the back of the box, it was a little hard to understand what it was meant to do and what each item was for.", rating: 3, location: "Texas")
+r4= Review.create(user_id: 4, toy_id: 1, title: "Worth the money", user_review: "Recently purchased this for my kids who are finally old enough to appreciate it and they love it so much!", rating: 10, location: "South Dakota")
 
 
 puts"done!"

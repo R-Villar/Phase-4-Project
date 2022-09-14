@@ -18,7 +18,7 @@ function App() {
 
   // const updateUser = (user) => setCurrentUser(user)
   const [toys, setToys] = useState([])
-  const [reviews, setReviews] = useState([])
+//   const [reviews, setReviews] = useState([])
   const [errors, setErrors] = useState(false)
 
 
@@ -38,21 +38,23 @@ function App() {
   }, [])
 
 //get reviews
-useEffect(() => {
-  fetch('/reviews').then(res => {
-    // console.log(res)
-    if(res.ok){
-      res.json().then(setReviews)
-    } else {
-      res.json().then((data) => {
-        // console.log(data)
-        setReviews(data.error)
-      });
-    }
-  });
-}, [])
+// useEffect(() => {
+//   fetch('/reviews').then(res => {
+//     // console.log(res)
+//     if(res.ok){
+//       res.json().then(setReviews)
+//     } else {
+//       res.json().then((data) => {
+//         // console.log(data)
+//         setReviews(data.error)
+//       });
+//     }
+//   });
+// }, [])
 
-const addReviews = (review) => setReviews(current => [...current,review])
+console.log(currentUser)
+
+// const addReviews = (review) => setReviews(current => [...current,review])
 
 // const updateReview = (updatedReview) => setReviews(current => {
 //   return current.map(review => {
@@ -106,8 +108,9 @@ const addReviews = (review) => setReviews(current => [...current,review])
 				</Route>
         <Route exact path='/toys/:id'>
 					<ToyPage 
-          currentUser={currentUser}
-          addReviews={addReviews}/>
+						currentUser={currentUser}
+						// addReviews={addReviews}
+						/>
 				</Route>
 			</Switch>
 		</div>
