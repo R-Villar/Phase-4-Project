@@ -6,8 +6,6 @@ class UsersController < ApplicationController
     end
 
     def show 
-        # user = find_user
-        # render json: @current_user, status: :ok
         if current_user
             render json: current_user, status: :ok
         else
@@ -28,7 +26,4 @@ class UsersController < ApplicationController
 
     end
 
-    # def find_user
-    #     User.find(params[:id])
-    # end
 end
