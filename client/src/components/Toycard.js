@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Grid from "@mui/material/Grid";
+import ToyPage from './Toypage';
+
 
 const labels = {
   0.5: 'Useless',
@@ -24,43 +26,52 @@ const labels = {
 };
 
 
-function ToyCard({toy}){
+function ToyCard({toy, setSelectedToy}) {
+	const value = 3.5;
+	const {id} = toy;
+	// console.log(toy)
 
-  const value = 3.5;
-  const {id} = toy
-  // console.log(toy)
-    return(
+  function selectedToy() {
+    setSelectedToy(toy)
+  }
 
-    <Grid container
-    justifyContent='center'
-    style={{minHeight: "10vh"}} >
-      <Grid item xs={12} sm={4} md={4}>
-        <Card elevation={3} sx={{ maxWidth: 400 }}>
-         <CardHeader title={toy.name} />
-          <CardContent>
-            <CardMedia
-              component="img"
-              height="300"
-              image={toy.image}
-              alt="toy image"
-            />
-            
-              <Typography align='center' color='textPrimary' >
-                <Link to={`/toys/${id}`}>{toy.name}</Link>
-              </Typography>
-              <Rating
-                name="text-feedback"
-                value={value}
-                readOnly
-                precision={0.5}
-                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-              />
-            </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
-    
-    )
+
+	return (
+		<Grid container justifyContent='center' style={{minHeight: "10vh"}}>
+			<Grid item xs={12} sm={4} md={4}>
+				<Card elevation={3} sx={{maxWidth: 400}}>
+					<CardHeader title={toy.name} />
+					<CardContent>
+						<CardMedia
+							component='img'
+							height='300'
+							image={toy.image}
+							alt='toy image'
+						/>
+
+						<Typography align='center' color='textPrimary'>
+							<Link
+               to={`/toys/${toy.id}`}
+              onClick={selectedToy}
+               >{toy.name}</Link>
+						</Typography>
+						<Rating
+							name='text-feedback'
+							value={value}
+							readOnly
+							precision={0.5}
+							emptyIcon={
+								<StarIcon
+									style={{opacity: 0.55}}
+									fontSize='inherit'
+								/>
+							}
+						/>
+					</CardContent>
+				</Card>
+			</Grid>
+		</Grid>
+	);
 }
 
 export default ToyCard;
