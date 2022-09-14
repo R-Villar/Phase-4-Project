@@ -22,6 +22,7 @@ function Popup({open, handleClose, addReviews, currentUser}) {
         rating: '',
         location: ''
       })
+      // hello
 
   console.log(formData)
 
