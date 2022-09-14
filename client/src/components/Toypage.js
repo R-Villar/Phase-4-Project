@@ -3,23 +3,29 @@ import { useParams } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import CardHeader from "@mui/material/CardHeader";
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid } from '@mui/material';
 import * as React from 'react';
+import IconButton from "@mui/material/IconButton";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container'
 import Button from '@mui/material/Button';
 import Popup from "./Popup";
+import Box from "@mui/material/Box";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 // import Review from "./Review";
+import EditReview from "./EditReview";
+
+
+
 
 
 function ToyPage({currentUser, selectedToy, addReviews}) {
 	let {id} = useParams();
-	// console.log(id)
-	const [toy, setToy] = useState({reviews: []});
 
+	const [toy, setToy] = useState({reviews: []});
 	const [errors, setErrors] = useState([]);
 
 	useEffect(() => {
@@ -31,20 +37,41 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 	}, [id]);
 
 	const {reviews} = toy;
-	console.log(selectedToy);
-	console.log(toy);
+	// console.log(selectedToy);
+	// console.log(toy);
 	const displayReviews = reviews.map((review) => {
-		//    return  console.log(review.title)
+
+        function reviewUpdate() {
+			console.log(review);
+            // return (
+            //     <EditReview review={review}/>
+            // )
+		}
 
 		return (
-			<div key={review.id}>
-				<h1>Reviews</h1>
-				<h2>{review.title} </h2>
-				{review.user_review}
-				<h3>{review.rating}</h3>
-				<h4>{review.location}</h4>
-				<h4>{review.created_at}</h4>
-			</div>
+			<Grid
+				container
+				rowSpacing={1}
+				columnSpacing={{xs: 1, sm: 2, md: 3}}
+			>
+				<Card elevation={3} sx={{maxWidth: 400}} key={review.id}>
+					<CardHeader title='User Reviews' />
+					<CardContent>
+						<IconButton onClick={reviewUpdate}>
+							<EditIcon></EditIcon>
+						</IconButton>
+						<IconButton>
+							<DeleteForeverIcon />
+						</IconButton>
+
+						<Typography>{review.title} </Typography>
+						<Typography>{review.user_review}</Typography>
+						<Typography>{review.rating}</Typography>
+						<Typography>{review.location}</Typography>
+						<Typography>{review.created_at}</Typography>
+					</CardContent>
+				</Card>
+			</Grid>
 		);
 	});
 
@@ -57,6 +84,8 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 	const handleClose = () => {
 		setOpen(false);
 	};
+
+	const [isEditing, setIsEditing] = useState(false);
 
 	return (
 		<div>
@@ -124,12 +153,9 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 					</CardActionArea>
 				</Card>
 			</Grid>
-			<div>
-				<React.Fragment>
-					<CssBaseline />
-					<Container fixed>{displayReviews}</Container>
-				</React.Fragment>
-			</div>
+			<Box sx={{width: "100%"}}>
+				<div>{displayReviews}</div>
+			</Box>
 		</div>
 	);
 }
