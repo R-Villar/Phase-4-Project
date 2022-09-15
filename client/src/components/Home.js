@@ -7,4 +7,5 @@ function Home({currentUser}) {
 		</div>;
 }
 
+// Hello
 export default Home 
