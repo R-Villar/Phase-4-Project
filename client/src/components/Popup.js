@@ -24,17 +24,11 @@ function Popup({open, handleClose, addReviews, currentUser}) {
       })
 
     const [errors, setErrors] = useState([])
-      console.log(errors)
     const handleChange = (e) => {
-      // console.log(e.target.value)
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
-
-    // console.log(formData)
-
     function onSubmit(e){
         e.preventDefault()
-
 
         fetch('/reviews',{
           method:'POST',
@@ -57,7 +51,7 @@ function Popup({open, handleClose, addReviews, currentUser}) {
 		<div>
 			<Dialog open={open} onClose={handleClose}>
 				<DialogTitle>Please share your experience.</DialogTitle>
-				<DialogContent>
+					<DialogContent>
 					<DialogContentText>
 						Your feedback will help other shoppers make good
 						choices, and we'll use it to improve our products.
@@ -77,7 +71,6 @@ function Popup({open, handleClose, addReviews, currentUser}) {
 							value={formData.rating}
 							onChange={handleChange}
 						/>
-
 						<TextField
 							name='user_review'
 							label='Review'
@@ -96,9 +89,9 @@ function Popup({open, handleClose, addReviews, currentUser}) {
 							</Button>
 						</DialogActions>
 					</form>
-				</DialogContent>
+					</DialogContent>
 			</Dialog>
-      {errors? errors.map(error => <div> {error[0]} {error[1]} </div>) :null}
+			{errors ? <div>{errors}</div> : null}
 		</div>
 	);
 }

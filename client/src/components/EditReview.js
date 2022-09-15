@@ -125,6 +125,7 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 					</Card>
 				</form>
 			)}
+			{errors ? <div>{errors}</div> : null}
 		</div>
 	);
 }

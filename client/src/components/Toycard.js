@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +11,10 @@ import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Grid from "@mui/material/Grid";
 import ToyPage from './Toypage';
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Alert from '@mui/material/Alert';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
 const labels = {
@@ -26,51 +31,72 @@ const labels = {
 };
 
 
-function ToyCard({toy, setSelectedToy}) {
+function ToyCard({toy, setSelectedToy, setCartItems, newToyInCart}) {
 	const value = 3.5;
 	const {id} = toy;
-	// console.log(toy)
+	//  console.log(toy)
+	
+	const [show, setShow] = useState(false)
 
-  function selectedToy() {
-    setSelectedToy(toy)
-  }
+
+	// removes items from cart
+	function handleAddToCart() {
+		newToyInCart(toy)
+		//console.log(toy)
+	}
+	
+
+	function selectedToy() {
+	setSelectedToy(toy)
+	}
 
 
 	return (
-		<Grid container justifyContent='center' style={{minHeight: "10vh"}}>
-			<Grid item xs={12} sm={4} md={4}>
-				<Card elevation={3} sx={{maxWidth: 400}}>
-					<CardHeader title={toy.name} />
-					<CardContent>
-						<CardMedia
-							component='img'
-							height='300'
-							image={toy.image}
-							alt='toy image'
-						/>
 
-						<Typography align='center' color='textPrimary'>
-							<Link
-               to={`/toys/${toy.id}`}
-              onClick={selectedToy}
-               >{toy.name}</Link>
-						</Typography>
-						<Rating
-							name='text-feedback'
-							value={value}
-							readOnly
-							precision={0.5}
-							emptyIcon={
-								<StarIcon
-									style={{opacity: 0.55}}
-									fontSize='inherit'
-								/>
-							}
-						/>
-					</CardContent>
-				</Card>
-			</Grid>
-		</Grid>
+		<Box
+			sx={{
+				display: "grid",
+				flexDirection: "row",
+				flexWrap: "wrap",
+				"& > :not(style)": {
+					p: 1,
+					m: 2,
+					width: 300,
+					height: 700,
+				},
+			}}
+		>
+			<Paper elevation={3} sx={{maxWidth: 400}}>
+				<CardHeader title={toy.name} />
+				<CardContent>
+					<CardMedia
+						component='img'
+						height='300'
+						image={toy.image}
+						alt='toy image'
+					/>
+
+					<Typography align='center' color='textPrimary'>
+						<Link to={`/toys/${toy.id}`} onClick={selectedToy}>
+							{toy.name}
+						</Link>
+					</Typography>
+					<Rating
+						name='text-feedback'
+						value={value}
+						readOnly
+						precision={0.5}
+						emptyIcon={
+							<StarIcon
+								style={{opacity: 0.55}}
+								fontSize='inherit'
+							/>
+						}
+					/>
+				</CardContent>
+			</Paper>
+		</Box>
+
 	);
 }
 

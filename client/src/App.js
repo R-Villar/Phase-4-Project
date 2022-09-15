@@ -21,7 +21,14 @@ function App() {
 	const [toys, setToys] = useState([])
 	const [reviews, setReviews] = useState([])
 	const [errors, setErrors] = useState(false)
+	const [ cartItems, setCartItems ] = useState([])
 
+	const newToyInCart = newToyObj => {
+		setSelectedToy( toyObj => [...toyObj, newToyObj ])
+	  }
+
+	// console.log(cartItems)
+	console.log(selectedToy)
 	//get toys
 	useEffect(() => {
 	fetch('/toys').then(res => {
@@ -58,6 +65,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 
 
 
+	console.log(selectedToy);
 
   useEffect(() => {
 		fetch('/me').then((res) => {
@@ -83,7 +91,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 			<Switch>
 				<Route exact path='/home'>
 					<Home currentUser={currentUser} />
-					<ToyContainer toys={toys} setSelectedToy={setSelectedToy} />
+					<ToyContainer toys={toys} setSelectedToy={setSelectedToy} setCartItems={setCartItems} newToyInCart={newToyInCart} />
 				</Route>
 				<Route exact path='/login'>
 					<Login setCurrentUser={setCurrentUser} />
@@ -92,7 +100,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 					<Signup setCurrentUser={setCurrentUser} />
 				</Route>
 				<Route exact path='/cart'>
-					<Cart />
+					<Cart selectedToy={selectedToy}/>
 				</Route>
 				<Route exact path='/toys/:id'>
 					<ToyPage
