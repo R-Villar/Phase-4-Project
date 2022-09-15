@@ -23,9 +23,9 @@ class ApplicationController < ActionController::API
     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
-  def is_authorized?
-    permitted = current_user.admin?
-    render json: {errors: {User: "does not have admin permission"}}, status: :forbidden unless permitted
-  end
+  # def is_authorized?
+  #   permitted = current_user.admin?
+  #   render json: {errors: {User: "does not have admin permission"}}, status: :forbidden unless permitted
+  # end
 
 end
