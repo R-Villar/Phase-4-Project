@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 
-function Navbar() {
+function Navbar({currentUser}) {
 
     return (
         <div>
@@ -16,6 +16,9 @@ function Navbar() {
             </NavLink>
             <NavLink to = "/cart">
                 Cart
+            </NavLink>
+            <NavLink to = "/NewToy">
+                {currentUser? <p>New Toy</p>:null}
             </NavLink>
         </div>
     )
