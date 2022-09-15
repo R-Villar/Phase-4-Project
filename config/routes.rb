@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "/toys/:id", to: "session#show"
   get "/me", to: "users#show"
   delete '/logout', to: "sessions#destroy"
+
+
+  # get '/authorized_user', to: 'users#show'
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

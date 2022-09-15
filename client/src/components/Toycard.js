@@ -15,6 +15,7 @@ import Alert from '@mui/material/Alert';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
+
 const labels = {
   0.5: 'Useless',
   1: 'Useless+',
@@ -29,35 +30,28 @@ const labels = {
 };
 
 
-function ToyCard({toy, setSelectedToy}) {
+function ToyCard({toy, setSelectedToy, setCartItems, newToyInCart}) {
 	const value = 3.5;
 	const {id} = toy;
 	//  console.log(toy)
-	const [ cartItems, setCartItems ] = useState(toy)
+	
 	const [show, setShow] = useState(false)
 
-	// adds the total price of the items
-    // let totalPrice = cartItems.reduce(function(accumulator, item) {
-    //     return accumulator + item.price
-    // }, 0)
 
-	// maps thru the cart items
-	// const inCartItems = cartItems.map((item) => {
-	// const {name, price, id, image} = item
-
-	  // removes items from cart
-	  function handleClick() {
-		const removeFromCart = cartItems.filter((cartItem) => cartItem.id !== id)
-		setCartItems(removeFromCart)
+	// removes items from cart
+	function handleAddToCart() {
+		newToyInCart(toy)
+		//console.log(toy)
 	}
 	
 
-  function selectedToy() {
-    setSelectedToy(toy)
-  }
+	function selectedToy() {
+	setSelectedToy(toy)
+	}
 
 
 	return (
+		
 		<Grid container justifyContent='center' style={{minHeight: "10vh"}}>
 			<Grid item xs={12} sm={4} md={4}>
 				<Card elevation={3} sx={{maxWidth: 400}}>
@@ -71,13 +65,10 @@ function ToyCard({toy, setSelectedToy}) {
 						/>
 
 						<Typography align='center' color='textPrimary'>
-							<Link
-               to={`/toys/${toy.id}`}
-              onClick={selectedToy}
-               >{toy.name}</Link>
+							<Link to={`/toys/${toy.id}`}onClick={selectedToy}>{toy.name}</Link>
 						</Typography>
 						<ShoppingCartOutlinedIcon 
-						onClick={handleClick}
+							onClick={handleAddToCart}
 						></ShoppingCartOutlinedIcon>
 						<Rating
 							name='text-feedback'
@@ -95,6 +86,7 @@ function ToyCard({toy, setSelectedToy}) {
 				</Card>
 			</Grid>
 		</Grid>
+
 	);
 }
 

@@ -117,7 +117,7 @@ function Navbar({currentUser, setCurrentUser}) {
 								>
 									<Typography
 										as={NavLink}
-										to={page}
+										to={`/${page}`}
 										textAlign='center'
 									>
 										{page}
@@ -152,7 +152,7 @@ function Navbar({currentUser, setCurrentUser}) {
 							<Button>
 								<Typography
 									as={NavLink}
-									to={page}
+									to={`/${page}`}
 									key={page}
 									onClick={handleCloseNavMenu}
 									// onClick={() => console.log(page)}
@@ -208,7 +208,7 @@ function Navbar({currentUser, setCurrentUser}) {
 										<Typography
 											onClick={handleLogout}
 											as={NavLink}
-											to={setting}
+											to={`/${setting}`}
 											textAlign='center'
 										>
 											{setting}

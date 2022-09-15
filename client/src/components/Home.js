@@ -1,9 +1,9 @@
 
 function Home({currentUser}) {
 
-	return <div>
+	return <div className="home">
 		{/* displays username if the user is logged in */}
-		{currentUser? <p>Welcome back {currentUser.username}</p> : null }
+		{currentUser? <h1>Welcome back, {currentUser.username}</h1> : null }
 		</div>;
 }
 
