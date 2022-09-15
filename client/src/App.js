@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Cart from './components/Cart';
 import Signup from './components/Signup';
 import ToyPage from './components/Toypage';
+import NewToy from './components/NewToy';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState('')
@@ -18,7 +19,7 @@ function App() {
 	const [selectedToy, setSelectedToy] = useState([]);
 	// const updateUser = (user) => setCurrentUser(user)
 	const [toys, setToys] = useState([])
-	  const [reviews, setReviews] = useState([])
+	const [reviews, setReviews] = useState([])
 	const [errors, setErrors] = useState(false)
 
 	//get toys
@@ -36,7 +37,12 @@ function App() {
 	});
 	}, [])
 
+// function handleDeleteClick(deletedReview){
+//   const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id)
+//   setReviews(updatedReviews)
+// }
 
+const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
 
 const addReviews = (review) => setReviews(current => [...current,review])
 
@@ -50,7 +56,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 //   })
 // })
 
-// const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
+
 
 
   useEffect(() => {
@@ -74,7 +80,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
   return (
 		<div className='App'>
 
-			<Navbar />
+			<Navbar currentUser={currentUser}/>
 			<Switch>
 				<Route exact path='/home'>
 					<Home currentUser={currentUser} />
@@ -94,6 +100,12 @@ const addReviews = (review) => setReviews(current => [...current,review])
 						currentUser={currentUser}
 						selectedToy={selectedToy}
 						addReviews={addReviews}
+            // handleDeleteClick={handleDeleteClick}
+			deleteReview={deleteReview}
+					/>
+				</Route>
+        <Route exact path='/NewToy'>
+					<NewToy
 					/>
 				</Route>
 			</Switch>

@@ -26,13 +26,13 @@ puts"creating user seeds"
 # 15.times do User.create(icon: "icon image",
 #                     username: Faker::Internet.unique.username(specifier: 2..12),
 #                     email: Faker::Internet.unique.email,
-#                     password_digest: Faker::Internet.unique.password(min_length: 6, max_length: 20))
+#                     password: Faker::Internet.unique.password(min_length: 6, max_length: 20))
 # end
-u1= User.create(icon: "icon image", username: "shaquille.oatmeal", email: "jewel73@hotmail.com", password_digest: "3QZ70G!6nx9q")
-u2= User.create(icon: "icon image", username: "fast_and_the_curious", email: "dorthy_kshlerin@gmail.com", password_digest: "36Lfd&*2s9*N")
-u3= User.create(icon: "icon image", username: "cute.as.ducks", email: "lizzie15@hotmail.com", password_digest: "i!62fUE50^OO")
-u4= User.create(icon: "icon image", username: "HairyPoppins", email: "kitty_botsford96@yahoo.com", password_digest: "7LA!MCq5n25l")
-u5= User.create(icon: "icon image", username: "me_for_president", email: "presley89@gmail.com", password_digest: "q7re&X3V!8QW")
+u1= User.create(icon: "icon image", username: "shaquille.oatmeal", email: "jewel73@hotmail.com", password: "3QZ70G!6nx9q", admin:true)
+u2= User.create(icon: "icon image", username: "fast_and_the_curious", email: "dorthy_kshlerin@gmail.com", password: "36Lfd&*2s9*N")
+u3= User.create(icon: "icon image", username: "cute.as.ducks", email: "lizzie15@hotmail.com", password: "i!62fUE50^OO")
+u4= User.create(icon: "icon image", username: "HairyPoppins", email: "kitty_botsford96@yahoo.com", password: "7LA!MCq5n25l")
+u5= User.create(icon: "icon image", username: "me_for_president", email: "presley89@gmail.com", password: "q7re&X3V!8QW")
 
 
 puts"creating review seeds"
