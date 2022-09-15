@@ -13,20 +13,25 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import {useHistory} from "react-router-dom";
 
 
 
 
-const pages = ["home", "Cart"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
-function Navbar({currentUser}) {
 
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+function Navbar({currentUser, setCurrentUser}) {
+	// const {username} = currentUser;
+    const history = useHistory();
+	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const pages = ["home", "Cart"];
 
-    const handleOpenNavMenu = (event) => {
+	const settings = currentUser
+		? ["Logout"]
+		: ["Signup", "Login", "Logout"]; 
+
+	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
 	};
 	const handleOpenUserMenu = (event) => {
@@ -41,8 +46,16 @@ function Navbar({currentUser}) {
 		setAnchorElUser(null);
 	};
 
+	const handleLogout = () => {
+		fetch("/logout", {method: "DELETE"}).then((res) => {
+			if (res.ok) {
+				setCurrentUser(null);
+                history.push("/home");
+			}
+		});
+	};
 
-    return (
+	return (
 		<AppBar position='static'>
 			<Container maxWidth='xl'>
 				<Toolbar disableGutters>
@@ -156,20 +169,67 @@ function Navbar({currentUser}) {
 					</Box>
 
 					{/* Login user */}
-					<Box sx={{flexGrow: 0}}></Box>
+					<Box sx={{flexGrow: 0}}>
+						<Tooltip title='Open settings'>
+							<IconButton
+								onClick={handleOpenUserMenu}
+								sx={{p: 0}}
+							>
+								{/* Avatar for User */}
+								<Avatar
+									alt='Remy'
+									src='/static/images/avatar/2.jpg'
+								/>
+							</IconButton>
+						</Tooltip>
+						<Menu
+							sx={{mt: "45px"}}
+							id='menu-appbar'
+							anchorEl={anchorElUser}
+							anchorOrigin={{
+								vertical: "top",
+								horizontal: "right",
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: "top",
+								horizontal: "right",
+							}}
+							open={Boolean(anchorElUser)}
+							onClose={handleCloseUserMenu}
+						>
+							{settings.map((setting) => (
+								<MenuItem
+									key={setting}
+									onClick={handleCloseUserMenu}
+									// onClick={() => console.log(setting)}
+								>
+									<Button>
+										<Typography
+											onClick={handleLogout}
+											as={NavLink}
+											to={setting}
+											textAlign='center'
+										>
+											{setting}
+										</Typography>
+									</Button>
+								</MenuItem>
+							))}
+						</Menu>
+					</Box>
 				</Toolbar>
 			</Container>
 		</AppBar>
 	);
 
-    // <NavLink to='/home'>Home</NavLink>
+	// <NavLink to='/home'>Home</NavLink>
 	// 					<NavLink to='/login'>Login</NavLink>
 	// 					<NavLink to='/signup'>Signup</NavLink>
 	// 					<NavLink to='/cart'>Cart</NavLink>
-    //           <NavLink to = "/NewToy">
-    //             {currentUser? <p>New Toy</p>:null}
-    //         </NavLink>
-
+	//           <NavLink to = "/NewToy">
+	//             {currentUser? <p>New Toy</p>:null}
+	//         </NavLink>
 }
 
 
