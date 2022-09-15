@@ -14,18 +14,18 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {useParams} from "react-router-dom";
 
-function EditReview({review, currentUser, addReviews}) {
+function EditReview({review, currentUser, addReviews, handleDelete}) {
 	let {id} = useParams();
 
 	const [isEditing, setIsEditing] = useState(true);
-    const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState([]);
 
 	const {title, user_review, rating, location} = review;
 	const [titleUpdate, setTitleUpdate] = useState(title);
 	const [locationUpdate, setLocationUpdate] = useState(location);
 	const [userReviewUpdate, setUserReviewUpdate] = useState(user_review);
 	const [ratingUpdate, setRatingUpdate] = useState(rating);
-    const [notAllow, setNotAllow ] = useState(currentUser.id)
+	const [notAllow, setNotAllow] = useState(currentUser.id);
 
 	function updateReview(e) {
 		e.preventDefault();
@@ -38,8 +38,8 @@ function EditReview({review, currentUser, addReviews}) {
 			rating: ratingUpdate,
 			location: locationUpdate,
 		};
-       
-        // console.log(currentUser.id ? review.user_id : false);
+
+		// console.log(currentUser.id ? review.user_id : false);
 
 		fetch(`/reviews/${id}`, {
 			method: "PATCH",
@@ -48,18 +48,16 @@ function EditReview({review, currentUser, addReviews}) {
 		}).then((res) => {
 			if (res.ok) {
 				res.json().then(addReviews);
-			}else { 
-                res.json().then((json) => setErrors(json.errors));
-            }
+			} else {
+				res.json().then((json) => setErrors(json.errors));
+			}
 		});
-
-         
 
 		setIsEditing((isEditing) => !isEditing);
 		return review;
 	}
-    const [disable, setDisable] = useState(currentUser.id !== review.user_id);
-    // console.log("review", review.user_id, "user", currentUser.id);
+	const [disable, setDisable] = useState(currentUser.id !== review.user_id);
+	// console.log("review", review.user_id, "user", currentUser.id);
 	// console.log(disable)
 	return (
 		<div>
@@ -67,13 +65,10 @@ function EditReview({review, currentUser, addReviews}) {
 				<Card elevation={3} sx={{maxWidth: 400}} key={review.id}>
 					<CardHeader title='User Reviews' />
 					<CardContent>
-						<IconButton
-							disabled={disable}
-                            onClick={updateReview}
-						>
+						<IconButton disabled={disable} onClick={updateReview}>
 							<EditIcon></EditIcon>
 						</IconButton>
-						<IconButton>
+						<IconButton onClick={handleDelete}>
 							<DeleteForeverIcon />
 						</IconButton>
 						<Typography>{review.title} </Typography>
