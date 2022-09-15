@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-    skip_before_action :authenticate_user #except: [:create, :show]
+    skip_before_action :authenticate_user, except: [:create]
 
+    #GET '/userss'
     def index 
         render json: User.all, status: :ok
     end
 
+    #GET '/users/:id'
     def show 
         if current_user
             render json: current_user, status: :ok
@@ -23,7 +25,9 @@ class UsersController < ApplicationController
 
     def user_params
         params.permit(:icon, :username, :email, :password)
-
     end
+    
+
+    
 
 end

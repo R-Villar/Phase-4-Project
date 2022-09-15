@@ -11,6 +11,17 @@ class SessionsController < ApplicationController
         end
     end
 
+    # def show 
+    #     toy = Toy.find_by(id: params[:id])
+
+    #         session[:toy_id] = toy.id
+    #         render json: toy, status: :ok
+    
+    #     end
+    # end
+
+
+
     # DELETE '/logout'
     def destroy
         session.delete(:user_id)

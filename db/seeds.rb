@@ -26,13 +26,15 @@ puts"creating user seeds"
 # 15.times do User.create(icon: "icon image",
 #                     username: Faker::Internet.unique.username(specifier: 2..12),
 #                     email: Faker::Internet.unique.email,
-#                     password_digest: Faker::Internet.unique.password(min_length: 6, max_length: 20))
+#                     password: Faker::Internet.unique.password(min_length: 6, max_length: 20))
 # end
-u1= User.create(icon: "icon image", username: "shaquille.oatmeal", email: "jewel73@hotmail.com", password_digest: "3QZ70G!6nx9q")
-u2= User.create(icon: "icon image", username: "fast_and_the_curious", email: "dorthy_kshlerin@gmail.com", password_digest: "36Lfd&*2s9*N")
-u3= User.create(icon: "icon image", username: "cute.as.ducks", email: "lizzie15@hotmail.com", password_digest: "i!62fUE50^OO")
-u4= User.create(icon: "icon image", username: "HairyPoppins", email: "kitty_botsford96@yahoo.com", password_digest: "7LA!MCq5n25l")
-u5= User.create(icon: "icon image", username: "me_for_president", email: "presley89@gmail.com", password_digest: "q7re&X3V!8QW")
+
+u1= User.create(icon: "icon image", username: "shaquille.oatmeal", email: "jewel73@hotmail.com", password: "3QZ70G!6nx9q", admin:true)
+
+u2= User.create(icon: "icon image", username: "fast_and_the_curious", email: "dorthy_kshlerin@gmail.com", password: "36Lfd&*2s9*N")
+u3= User.create(icon: "icon image", username: "cute.as.ducks", email: "lizzie15@hotmail.com", password: "i!62fUE50^OO")
+u4= User.create(icon: "icon image", username: "HairyPoppins", email: "kitty_botsford96@yahoo.com", password: "7LA!MCq5n25l")
+u5= User.create(icon: "icon image", username: "me_for_president", email: "presley89@gmail.com", password: "q7re&X3V!8QW")
 
 
 puts"creating review seeds"
@@ -43,10 +45,10 @@ puts"creating review seeds"
 #                     rating:rand(1..10),
 #                     location:Faker::Address.state)
 # end
-r1= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Great Toy", user_review: "Let my nephew play with this toy and he had a lot of fun.", rating: 10, location: "California")
-r2= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "So cool!", user_review: "Really good product, my daughter enjoyed playing with it and liked multi option of the toy. That expand his playing time and options of playing. The toy is good quality, easy to take out of the box which is plus as sometimes you spend ages to do it. Generally I would recommend it.", rating: 10, location: "Vermont")
-r3= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Disapointing", user_review: "When unpackaged though, we both found that other than an image on the back of the box, it was a little hard to understand what it was meant to do and what each item was for.", rating: 3, location: "Texas")
-r4= Review.create(user_id: rand(1..5), toy_id: rand(1..10), title: "Worth the money", user_review: "Recently purchased this for my kids who are finally old enough to appreciate it and they love it so much!", rating: 10, location: "South Dakota")
+r1= Review.create(user_id: 1, toy_id: 1, title: "Great Toy", user_review: "Let my nephew play with this toy and he had a lot of fun.", rating: 10, location: "California")
+r2= Review.create(user_id: 2, toy_id: 1, title: "So cool!", user_review: "Really good product, my daughter enjoyed playing with it and liked multi option of the toy. That expand his playing time and options of playing. The toy is good quality, easy to take out of the box which is plus as sometimes you spend ages to do it. Generally I would recommend it.", rating: 10, location: "Vermont")
+r3= Review.create(user_id: 3, toy_id: 1, title: "Disapointing", user_review: "When unpackaged though, we both found that other than an image on the back of the box, it was a little hard to understand what it was meant to do and what each item was for.", rating: 3, location: "Texas")
+r4= Review.create(user_id: 4, toy_id: 1, title: "Worth the money", user_review: "Recently purchased this for my kids who are finally old enough to appreciate it and they love it so much!", rating: 10, location: "South Dakota")
 
 
 puts"done!"

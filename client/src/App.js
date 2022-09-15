@@ -10,47 +10,39 @@ import Login from './components/Login';
 import Cart from './components/Cart';
 import Signup from './components/Signup';
 import ToyPage from './components/Toypage';
+import NewToy from './components/NewToy';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
-  
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+	const [currentUser, setCurrentUser] = useState('')
 
-  // const updateUser = (user) => setCurrentUser(user)
-  const [toys, setToys] = useState([])
-  const [reviews, setReviews] = useState([])
-  const [errors, setErrors] = useState(false)
+	const [isAuthenticated, setIsAuthenticated] = useState(true);
+	const [selectedToy, setSelectedToy] = useState([]);
+	// const updateUser = (user) => setCurrentUser(user)
+	const [toys, setToys] = useState([])
+	const [reviews, setReviews] = useState([])
+	const [errors, setErrors] = useState(false)
 
+	//get toys
+	useEffect(() => {
+	fetch('/toys').then(res => {
+		// console.log(res)
+		if(res.ok){
+		res.json().then(setToys)
+		} else {
+		res.json().then((data) => {
+			// console.log(data)
+			setErrors(data.error)
+		});
+		}
+	});
+	}, [])
 
-  //get toys
-  useEffect(() => {
-    fetch('/toys').then(res => {
-      // console.log(res)
-      if(res.ok){
-        res.json().then(setToys)
-      } else {
-        res.json().then((data) => {
-          // console.log(data)
-          setErrors(data.error)
-        });
-      }
-    });
-  }, [])
+// function handleDeleteClick(deletedReview){
+//   const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id)
+//   setReviews(updatedReviews)
+// }
 
-//get reviews
-useEffect(() => {
-  fetch('/reviews').then(res => {
-    // console.log(res)
-    if(res.ok){
-      res.json().then(setReviews)
-    } else {
-      res.json().then((data) => {
-        // console.log(data)
-        setReviews(data.error)
-      });
-    }
-  });
-}, [])
+const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
 
 const addReviews = (review) => setReviews(current => [...current,review])
 
@@ -64,7 +56,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 //   })
 // })
 
-// const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
+
 
 
   useEffect(() => {
@@ -87,13 +79,12 @@ const addReviews = (review) => setReviews(current => [...current,review])
 
   return (
 		<div className='App'>
-			{/* welcome back {currentUser.username} */}
-     
-			<Navbar />
+
+			<Navbar currentUser={currentUser}/>
 			<Switch>
 				<Route exact path='/home'>
 					<Home currentUser={currentUser} />
-					<ToyContainer toys={toys} />
+					<ToyContainer toys={toys} setSelectedToy={setSelectedToy} />
 				</Route>
 				<Route exact path='/login'>
 					<Login setCurrentUser={setCurrentUser} />
@@ -104,10 +95,18 @@ const addReviews = (review) => setReviews(current => [...current,review])
 				<Route exact path='/cart'>
 					<Cart />
 				</Route>
-        <Route exact path='/toys/:id'>
-					<ToyPage 
-          currentUser={currentUser}
-          addReviews={addReviews}/>
+				<Route exact path='/toys/:id'>
+					<ToyPage
+						currentUser={currentUser}
+						selectedToy={selectedToy}
+						addReviews={addReviews}
+            // handleDeleteClick={handleDeleteClick}
+			deleteReview={deleteReview}
+					/>
+				</Route>
+        <Route exact path='/NewToy'>
+					<NewToy
+					/>
 				</Route>
 			</Switch>
 		</div>

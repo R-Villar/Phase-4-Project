@@ -11,7 +11,6 @@ class ApplicationController < ActionController::API
     @current_user ||= User.find_by_id(session[:user_id]) # memoization: caching experience
   end 
 
-
   def authenticate_user 
     render json: { errors: {User: "Not Authorized"} }, status: :unauthorized unless current_user
   end
@@ -22,6 +21,11 @@ class ApplicationController < ActionController::API
 
   def render_unprocessable_entity_response(invalid)
     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def is_authorized?
+    permitted = current_user.admin?
+    render json: {errors: {User: "does not have admin permission"}}, status: :forbidden unless permitted
   end
 
 end

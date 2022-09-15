@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :reviews
+  resources :reviews, only: [:index, :show, :create, :update, :destroy]
   resources :toys
   resources :users, only: [:index, :show, :create]
 
   post "/login", to: "sessions#create" 
   delete "/logout", to: "sessions#destroy"
+  get "/toys/:id", to: "session#show"
   get "/me", to: "users#show"
   delete '/logout', to: "sessions#destroy"
   

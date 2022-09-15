@@ -1,21 +1,17 @@
 import ToyCard from "./Toycard"
 import { Container } from "@mui/system";
 
-function ToyContainer({toys}){
-    
- const displayToys = toys.map(toy=>{
-        return (
+function ToyContainer({toys, setSelectedToy}) {
+	console.log(toys);
+	const displayToys = toys.map((toy) => {
+		return (
 			<Container fixed key={toy.id}>
-				<ToyCard toy={toy} />
+				<ToyCard setSelectedToy={setSelectedToy} toy={toy} />
 			</Container>
 		);
-    })
+	});
 
- return(
-     <div>
-        {displayToys}
-    </div>
-    )
+	return <div>{displayToys}</div>;
 }
 
 export default ToyContainer
