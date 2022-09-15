@@ -10,7 +10,8 @@ import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Grid from "@mui/material/Grid";
 import ToyPage from './Toypage';
-
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
 const labels = {
   0.5: 'Useless',
@@ -37,40 +38,49 @@ function ToyCard({toy, setSelectedToy}) {
 
 
 	return (
-		<Grid container justifyContent='center' style={{minHeight: "10vh"}}>
-			<Grid item xs={12} sm={4} md={4}>
-				<Card elevation={3} sx={{maxWidth: 400}}>
-					<CardHeader title={toy.name} />
-					<CardContent>
-						<CardMedia
-							component='img'
-							height='300'
-							image={toy.image}
-							alt='toy image'
-						/>
+		<Box
+			sx={{
+				display: "grid",
+				flexDirection: "row",
+				flexWrap: "wrap",
+				"& > :not(style)": {
+					p: 1,
+					m: 2,
+					width: 300,
+					height: 700,
+				},
+			}}
+		>
+			<Paper elevation={3} sx={{maxWidth: 400}}>
+				<CardHeader title={toy.name} />
+				<CardContent>
+					<CardMedia
+						component='img'
+						height='300'
+						image={toy.image}
+						alt='toy image'
+					/>
 
-						<Typography align='center' color='textPrimary'>
-							<Link
-               to={`/toys/${toy.id}`}
-              onClick={selectedToy}
-               >{toy.name}</Link>
-						</Typography>
-						<Rating
-							name='text-feedback'
-							value={value}
-							readOnly
-							precision={0.5}
-							emptyIcon={
-								<StarIcon
-									style={{opacity: 0.55}}
-									fontSize='inherit'
-								/>
-							}
-						/>
-					</CardContent>
-				</Card>
-			</Grid>
-		</Grid>
+					<Typography align='center' color='textPrimary'>
+						<Link to={`/toys/${toy.id}`} onClick={selectedToy}>
+							{toy.name}
+						</Link>
+					</Typography>
+					<Rating
+						name='text-feedback'
+						value={value}
+						readOnly
+						precision={0.5}
+						emptyIcon={
+							<StarIcon
+								style={{opacity: 0.55}}
+								fontSize='inherit'
+							/>
+						}
+					/>
+				</CardContent>
+			</Paper>
+		</Box>
 	);
 }
 

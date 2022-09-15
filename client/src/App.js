@@ -58,6 +58,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 
 
 
+	console.log(selectedToy);
 
   useEffect(() => {
 		fetch('/me').then((res) => {
