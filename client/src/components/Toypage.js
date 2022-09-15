@@ -36,6 +36,7 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 			});
 
 	}, [id, deleteReview,  addReviews]);
+	console.log(toy)
 
 
 	const {reviews} = toy;
@@ -65,14 +66,24 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 				}
 			  })
 			}
-			  
-		  
+
 		return (
-			<Grid
+			<Box
+				sx={{
+					display: "grid",
+					flexDirection: "row",
+					flexWrap: "wrap",
+					"& > :not(style)": {
+						p: 1,
+						m: 2,
+						width: 300,
+						height: 500,
+					},
+				}}
 				key={review.id}
 				container
-				rowSpacing={1}
-				columnSpacing={{xs: 1, sm: 2, md: 3}}
+				// rowSpacing={1}
+				// columnSpacing={{xs: 1, sm: 2, md: 3}}
 			>
 				<EditReview
 					addReviews={addReviews}
@@ -80,7 +91,7 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 					review={review}
 					handleDelete={handleDelete}
 				/>
-			</Grid>
+			</Box>
 		);
 	});
 
@@ -96,7 +107,23 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 
 	return (
 		<div>
-			<Grid container spacing={2}>
+			<Box
+				justifyContent='center'
+				sx={{
+					p: 1,
+					display: "center",
+					flexWrap: "wrap",
+					gridTemplateColumns: {
+						md: "1fr",
+						// md: ".5fr .5fr",
+						// lg: ".5fr .5fr .5fr",
+						// xl: ".5fr .5fr .5fr .5fr",
+					},
+					"& > :not(style)": {
+						m: 3,
+					},
+				}}
+			>
 				<Card sx={{maxWidth: 400}}>
 					<CardActionArea>
 						<CardMedia
@@ -159,9 +186,24 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 						</CardContent>
 					</CardActionArea>
 				</Card>
-			</Grid>
-			<Box sx={{width: "100%"}}>
-				<div>{displayReviews}</div>
+			</Box>
+			<Box
+				sx={{
+					p: 1,
+					display: "grid",
+					flexWrap: "wrap",
+					gridTemplateColumns: {
+						sm: ".5fr",
+						md: ".5fr .5fr",
+						lg: ".5fr .5fr .5fr",
+						xl: ".5fr .5fr .5fr .5fr",
+					},
+					"& > :not(style)": {
+						m: 3,
+					},
+				}}
+			>
+				{displayReviews}
 			</Box>
 		</div>
 	);

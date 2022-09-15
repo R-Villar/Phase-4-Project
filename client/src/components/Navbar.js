@@ -12,9 +12,9 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+// import AdbIcon from "@mui/icons-material/Adb";
 import {useHistory} from "react-router-dom";
-
+import ToysIcon from "@mui/icons-material/Toys";
 
 
 
@@ -60,7 +60,10 @@ function Navbar({currentUser, setCurrentUser}) {
 			<Container maxWidth='xl'>
 				<Toolbar disableGutters>
 					{/* Icon for navbar needs to be updated */}
-					<AdbIcon sx={{display: {xs: "none", md: "flex"}, mr: 1}} />
+					<ToysIcon
+						fontSize='large'
+						sx={{display: {xs: "none", md: "flex"}, mr: 1}}
+					/>
 					<Typography
 						variant='h6'
 						noWrap
@@ -77,7 +80,7 @@ function Navbar({currentUser, setCurrentUser}) {
 							textDecoration: "none",
 						}}
 					>
-						LOGO
+						My Little Toy Barn
 					</Typography>
 					{/* Menu for mobile screens */}
 					<Box sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}>
@@ -127,7 +130,10 @@ function Navbar({currentUser, setCurrentUser}) {
 						</Menu>
 					</Box>
 					{/* Menu for desktop screens */}
-					<AdbIcon sx={{display: {xs: "flex", md: "none"}, mr: 1}} />
+					<ToysIcon
+						fontSize='large'
+						sx={{display: {xs: "flex", md: "none"}, mr: 1}}
+					/>
 					<Typography
 						variant='h5'
 						noWrap
@@ -145,7 +151,7 @@ function Navbar({currentUser, setCurrentUser}) {
 							textDecoration: "none",
 						}}
 					>
-						LOGO
+						MLTB
 					</Typography>
 					<Box sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}>
 						{pages.map((page) => (
