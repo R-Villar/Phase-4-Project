@@ -31,10 +31,10 @@ puts"creating user seeds"
 
 u1= User.create(icon: "icon image", username: "shaquille.oatmeal", email: "jewel73@hotmail.com", password: "3QZ70G!6nx9q", admin:true)
 
-u2= User.create(icon: "icon image", username: "fast_and_the_curious", email: "dorthy_kshlerin@gmail.com", password: "36Lfd&*2s9*N")
-u3= User.create(icon: "icon image", username: "cute.as.ducks", email: "lizzie15@hotmail.com", password: "i!62fUE50^OO")
-u4= User.create(icon: "icon image", username: "HairyPoppins", email: "kitty_botsford96@yahoo.com", password: "7LA!MCq5n25l")
-u5= User.create(icon: "icon image", username: "me_for_president", email: "presley89@gmail.com", password: "q7re&X3V!8QW")
+u2= User.create(icon: "icon image", username: "fast_and_the_curious", email: "dorthy_kshlerin@gmail.com", password: "36Lfd&*2s9*N", admin:false)
+u3= User.create(icon: "icon image", username: "cute.as.ducks", email: "lizzie15@hotmail.com", password: "i!62fUE50^OO", admin:false)
+u4= User.create(icon: "icon image", username: "HairyPoppins", email: "kitty_botsford96@yahoo.com", password: "7LA!MCq5n25l", admin: false)
+u5= User.create(icon: "icon image", username: "me_for_president", email: "presley89@gmail.com", password: "q7re&X3V!8QW", admin: false)
 
 
 puts"creating review seeds"

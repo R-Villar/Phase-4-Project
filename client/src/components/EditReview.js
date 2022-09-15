@@ -68,8 +68,12 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 						<IconButton disabled={disable} onClick={updateReview}>
 							<EditIcon></EditIcon>
 						</IconButton>
-						<IconButton onClick={handleDelete}>
-							<DeleteForeverIcon />
+
+						<IconButton
+						disabled={disable}
+						onClick={handleDelete}
+						>
+							<DeleteForeverIcon/>
 						</IconButton>
 						<Typography>{review.title} </Typography>
 						<Typography>{review.user_review}</Typography>

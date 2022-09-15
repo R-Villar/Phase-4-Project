@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    skip_before_action :authenticate_user, except: [:create]
+    skip_before_action :authenticate_user, only: :create
+    #except: [:create,:show]
 
     #GET '/userss'
     def index 
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
     def show 
         if current_user
             render json: current_user, status: :ok
+            # serializer: UserReviewsSerializer
         else
             render json:{ errors: "No current session stored"}, status: :unauthorized
         end
