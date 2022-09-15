@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +11,9 @@ import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Grid from "@mui/material/Grid";
 import ToyPage from './Toypage';
+import Alert from '@mui/material/Alert';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+
 
 
 const labels = {
@@ -26,17 +30,28 @@ const labels = {
 };
 
 
-function ToyCard({toy, setSelectedToy}) {
+function ToyCard({toy, setSelectedToy, setCartItems, newToyInCart}) {
 	const value = 3.5;
 	const {id} = toy;
-	// console.log(toy)
+	//  console.log(toy)
+	
+	const [show, setShow] = useState(false)
 
-  function selectedToy() {
-    setSelectedToy(toy)
-  }
+
+	// removes items from cart
+	function handleAddToCart() {
+		newToyInCart(toy)
+		//console.log(toy)
+	}
+	
+
+	function selectedToy() {
+	setSelectedToy(toy)
+	}
 
 
 	return (
+		
 		<Grid container justifyContent='center' style={{minHeight: "10vh"}}>
 			<Grid item xs={12} sm={4} md={4}>
 				<Card elevation={3} sx={{maxWidth: 400}}>
@@ -50,11 +65,11 @@ function ToyCard({toy, setSelectedToy}) {
 						/>
 
 						<Typography align='center' color='textPrimary'>
-							<Link
-               to={`/toys/${toy.id}`}
-              onClick={selectedToy}
-               >{toy.name}</Link>
+							<Link to={`/toys/${toy.id}`}onClick={selectedToy}>{toy.name}</Link>
 						</Typography>
+						<ShoppingCartOutlinedIcon 
+							onClick={handleAddToCart}
+						></ShoppingCartOutlinedIcon>
 						<Rating
 							name='text-feedback'
 							value={value}
@@ -71,6 +86,7 @@ function ToyCard({toy, setSelectedToy}) {
 				</Card>
 			</Grid>
 		</Grid>
+
 	);
 }
 
