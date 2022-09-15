@@ -31,25 +31,22 @@ const labels = {
 };
 
 
-function ToyCard({toy, setSelectedToy, setCartItems, newToyInCart}) {
+function ToyCard({toy, setSelectedToy, newToyInCart}) {
 	const value = 3.5;
 	const {id} = toy;
 	//  console.log(toy)
 	
 	const [show, setShow] = useState(false)
 
-
 	// removes items from cart
 	function handleAddToCart() {
 		newToyInCart(toy)
 		//console.log(toy)
 	}
-	
 
 	function selectedToy() {
 	setSelectedToy(toy)
 	}
-
 
 	return (
 
@@ -81,6 +78,9 @@ function ToyCard({toy, setSelectedToy, setCartItems, newToyInCart}) {
 							{toy.name}
 						</Link>
 					</Typography>
+					<ShoppingCartOutlinedIcon 
+						onClick={handleAddToCart}
+					></ShoppingCartOutlinedIcon>
 					<Rating
 						name='text-feedback'
 						value={value}
