@@ -79,8 +79,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 
   return (
 		<div className='App'>
-
-			<Navbar currentUser={currentUser}/>
+			<Navbar setCurrentUser={setCurrentUser} currentUser={currentUser} />
 			<Switch>
 				<Route exact path='/home'>
 					<Home currentUser={currentUser} />
@@ -100,13 +99,12 @@ const addReviews = (review) => setReviews(current => [...current,review])
 						currentUser={currentUser}
 						selectedToy={selectedToy}
 						addReviews={addReviews}
-            // handleDeleteClick={handleDeleteClick}
-			deleteReview={deleteReview}
+						// handleDeleteClick={handleDeleteClick}
+						deleteReview={deleteReview}
 					/>
 				</Route>
-        <Route exact path='/NewToy'>
-					<NewToy
-					/>
+				<Route exact path='/NewToy'>
+					<NewToy />
 				</Route>
 			</Switch>
 		</div>
