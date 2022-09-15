@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :reviews
+  resources :reviews, only: [:index, :show, :create, :update, :destroy]
   resources :toys
   resources :users, only: [:index, :show, :create]
 

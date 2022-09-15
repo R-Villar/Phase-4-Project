@@ -20,9 +20,8 @@ import EditReview from "./EditReview";
 
 
 
-
-
 function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, deleteReview}) {
+
 	let {id} = useParams();
 
 	const [toy, setToy] = useState({reviews: []});
@@ -35,13 +34,15 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 			.then((toy) => {
 				setToy(toy);
 			});
-	}, [id, deleteReview]);
+
+	}, [id, deleteReview,  addReviews]);
+
 
 	const {reviews} = toy;
 	// console.log(selectedToy);
 	// console.log(toy);
+
 	 //handle delete
-	
 
 	const displayReviews = reviews.map((review) => {
 
@@ -70,27 +71,17 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 		  
 		return (
 			<Grid
+				key={review.id}
 				container
 				rowSpacing={1}
 				columnSpacing={{xs: 1, sm: 2, md: 3}}
 			>
-				<Card elevation={3} sx={{maxWidth: 400}} key={review.id}>
-					<CardHeader title='User Reviews' />
-					<CardContent>
-						<IconButton onClick={reviewUpdate}>
-							<EditIcon></EditIcon>
-						</IconButton>
-						<IconButton>
-							<DeleteForeverIcon onClick={handleDelete}/>
-						</IconButton>
+				<EditReview
+					addReviews={addReviews}
+					currentUser={currentUser}
+					review={review}
+				/>
 
-						<Typography>{review.title} </Typography>
-						<Typography>{review.user_review}</Typography>
-						<Typography>{review.rating}</Typography>
-						<Typography>{review.location}</Typography>
-						<Typography>{review.created_at}</Typography>
-					</CardContent>
-				</Card>
 			</Grid>
 		);
 	});
@@ -104,8 +95,6 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 	const handleClose = () => {
 		setOpen(false);
 	};
-
-	const [isEditing, setIsEditing] = useState(false);
 
 	return (
 		<div>
@@ -179,6 +168,5 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 		</div>
 	);
 }
-
 
 export default ToyPage;
