@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
-     skip_before_action :authenticate_user, except: [:update, :destroy]
-     #can only update or delete if you're logged in but button is still there
-
+     skip_before_action :authenticate_user
+    
      
     #GET '/reviews'
     def index
