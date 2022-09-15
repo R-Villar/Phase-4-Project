@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
 .App {
   text-align: center;
 }
@@ -18,5 +20,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.home{
+  font-family: 'Playfair Display', serif;
+
 }
 

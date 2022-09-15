@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,6 +13,9 @@ import Grid from "@mui/material/Grid";
 import ToyPage from './Toypage';
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Alert from '@mui/material/Alert';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+
 
 const labels = {
   0.5: 'Useless',
@@ -27,17 +31,28 @@ const labels = {
 };
 
 
-function ToyCard({toy, setSelectedToy}) {
+function ToyCard({toy, setSelectedToy, setCartItems, newToyInCart}) {
 	const value = 3.5;
 	const {id} = toy;
-	// console.log(toy)
+	//  console.log(toy)
+	
+	const [show, setShow] = useState(false)
 
-  function selectedToy() {
-    setSelectedToy(toy)
-  }
+
+	// removes items from cart
+	function handleAddToCart() {
+		newToyInCart(toy)
+		//console.log(toy)
+	}
+	
+
+	function selectedToy() {
+	setSelectedToy(toy)
+	}
 
 
 	return (
+
 		<Box
 			sx={{
 				display: "grid",
@@ -81,6 +96,7 @@ function ToyCard({toy, setSelectedToy}) {
 				</CardContent>
 			</Paper>
 		</Box>
+
 	);
 }
 
