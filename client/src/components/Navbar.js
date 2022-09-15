@@ -16,10 +16,12 @@ import AdbIcon from "@mui/icons-material/Adb";
 
 
 
+
 const pages = ["Home", "Cart"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Navbar() {
+function Navbar({currentUser}) {
+
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -45,8 +47,12 @@ function Navbar() {
 						<NavLink to='/login'>Login</NavLink>
 						<NavLink to='/signup'>Signup</NavLink>
 						<NavLink to='/cart'>Cart</NavLink>
+              <NavLink to = "/NewToy">
+                {currentUser? <p>New Toy</p>:null}
+            </NavLink>
 		</AppBar>
 	);
+
 }
 
 

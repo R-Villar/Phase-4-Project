@@ -18,11 +18,15 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 // import Review from "./Review";
 import EditReview from "./EditReview";
 
-function ToyPage({currentUser, selectedToy, addReviews}) {
+
+
+function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, deleteReview}) {
+
 	let {id} = useParams();
 
 	const [toy, setToy] = useState({reviews: []});
 	const [errors, setErrors] = useState([]);
+	const [ formData, setFormData ] = useState({ })
 
 	useEffect(() => {
 		fetch(`/toys/${id}`)
@@ -30,14 +34,41 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 			.then((toy) => {
 				setToy(toy);
 			});
-	}, [id, addReviews]);
+
+	}, [id, deleteReview,  addReviews]);
+
 
 	const {reviews} = toy;
 	// console.log(selectedToy);
 	// console.log(toy);
-  
+
+	 //handle delete
 
 	const displayReviews = reviews.map((review) => {
+
+        function reviewUpdate() {
+			console.log(review);
+            // return (
+            //     <EditReview review={review}/>
+            // )
+		}
+		function handleDelete(){
+			    fetch(`/reviews/${review.id}`, {
+			      method: "DELETE",
+			   })
+			   
+     		//   .then((r) => console.log(r))
+         	//   .then((id) => handleDeleteClick(id));
+			 .then(res => {
+				if(res.ok){
+				  deleteReview(id) // passed down from App
+				} else {
+				  res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
+				}
+			  })
+			}
+			  
+		  
 		return (
 			<Grid
 				key={review.id}
@@ -50,6 +81,7 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 					currentUser={currentUser}
 					review={review}
 				/>
+
 			</Grid>
 		);
 	});

@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
-    skip_before_action :authenticate_user #, except: [:create, :show]
+    skip_before_action :authenticate_user, except: [:create]
 
+    #GET '/userss'
     def index 
         render json: User.all, status: :ok
     end
 
+    #GET '/users/:id'
     def show 
-        # render json: find_user, serializer: UserReviewsSerializer
         if current_user
-            render json: current_user, status: :ok, serializer: UserReviewsSerializer
+            render json: current_user, status: :ok
         else
             render json:{ errors: "No current session stored"}, status: :unauthorized
         end
@@ -25,9 +26,8 @@ class UsersController < ApplicationController
     def user_params
         params.permit(:icon, :username, :email, :password)
     end
+    
 
-    def find_user
-        User.find(params[:id])
-    end
+    
 
 end

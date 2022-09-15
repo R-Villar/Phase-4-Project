@@ -52,7 +52,7 @@ function Popup({open, handleClose, addReviews, currentUser}) {
         })
       }
 
-
+     
     return (
 		<div>
 			<Dialog open={open} onClose={handleClose}>
@@ -98,6 +98,7 @@ function Popup({open, handleClose, addReviews, currentUser}) {
 					</form>
 				</DialogContent>
 			</Dialog>
+      {errors? errors.map(error => <div> {error[0]} {error[1]} </div>) :null}
 		</div>
 	);
 }
