@@ -14,7 +14,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {useParams} from "react-router-dom";
 
-function EditReview({review, currentUser, addReviews}) {
+function EditReview({review, currentUser, addReviews, handleDelete}) {
 	let {id} = useParams();
 
 	const [isEditing, setIsEditing] = useState(true);
@@ -73,8 +73,11 @@ function EditReview({review, currentUser, addReviews}) {
 						>
 							<EditIcon></EditIcon>
 						</IconButton>
-						<IconButton>
-							<DeleteForeverIcon />
+						<IconButton
+						disabled={disable}
+						onClick={handleDelete}
+						>
+							<DeleteForeverIcon/>
 						</IconButton>
 						<Typography>{review.title} </Typography>
 						<Typography>{review.user_review}</Typography>

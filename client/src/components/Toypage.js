@@ -80,6 +80,7 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 					addReviews={addReviews}
 					currentUser={currentUser}
 					review={review}
+					handleDelete={handleDelete}
 				/>
 
 			</Grid>

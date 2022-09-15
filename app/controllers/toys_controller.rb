@@ -1,6 +1,6 @@
 class ToysController < ApplicationController
     skip_before_action :authenticate_user
-    before_action :is_authorized?, only: :create
+    # before_action :is_authorized?, only: :create
     
      #GET '/toys'
      def index
