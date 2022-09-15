@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +11,8 @@ import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Grid from "@mui/material/Grid";
 import ToyPage from './Toypage';
+import Alert from '@mui/material/Alert';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
 const labels = {
@@ -29,7 +32,25 @@ const labels = {
 function ToyCard({toy, setSelectedToy}) {
 	const value = 3.5;
 	const {id} = toy;
-	// console.log(toy)
+	//  console.log(toy)
+	const [ cartItems, setCartItems ] = useState(toy)
+	const [show, setShow] = useState(false)
+
+	// adds the total price of the items
+    // let totalPrice = cartItems.reduce(function(accumulator, item) {
+    //     return accumulator + item.price
+    // }, 0)
+
+	// maps thru the cart items
+	// const inCartItems = cartItems.map((item) => {
+	// const {name, price, id, image} = item
+
+	  // removes items from cart
+	  function handleClick() {
+		const removeFromCart = cartItems.filter((cartItem) => cartItem.id !== id)
+		setCartItems(removeFromCart)
+	}
+	
 
   function selectedToy() {
     setSelectedToy(toy)
@@ -55,6 +76,9 @@ function ToyCard({toy, setSelectedToy}) {
               onClick={selectedToy}
                >{toy.name}</Link>
 						</Typography>
+						<ShoppingCartOutlinedIcon 
+						onClick={handleClick}
+						></ShoppingCartOutlinedIcon>
 						<Rating
 							name='text-feedback'
 							value={value}
