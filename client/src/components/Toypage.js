@@ -57,8 +57,6 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 			      method: "DELETE",
 			   })
 			   
-     		//   .then((r) => console.log(r))
-         	//   .then((id) => handleDeleteClick(id));
 			 .then(res => {
 				if(res.ok){
 				  deleteReview(id) // passed down from App
@@ -82,7 +80,6 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 					review={review}
 					handleDelete={handleDelete}
 				/>
-
 			</Grid>
 		);
 	});
