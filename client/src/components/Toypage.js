@@ -18,10 +18,6 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 // import Review from "./Review";
 import EditReview from "./EditReview";
 
-
-
-
-
 function ToyPage({currentUser, selectedToy, addReviews}) {
 	let {id} = useParams();
 
@@ -34,43 +30,26 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 			.then((toy) => {
 				setToy(toy);
 			});
-	}, [id]);
+	}, [id, addReviews]);
 
 	const {reviews} = toy;
 	// console.log(selectedToy);
 	// console.log(toy);
+  
+
 	const displayReviews = reviews.map((review) => {
-
-        function reviewUpdate() {
-			console.log(review);
-            // return (
-            //     <EditReview review={review}/>
-            // )
-		}
-
 		return (
 			<Grid
+				key={review.id}
 				container
 				rowSpacing={1}
 				columnSpacing={{xs: 1, sm: 2, md: 3}}
 			>
-				<Card elevation={3} sx={{maxWidth: 400}} key={review.id}>
-					<CardHeader title='User Reviews' />
-					<CardContent>
-						<IconButton onClick={reviewUpdate}>
-							<EditIcon></EditIcon>
-						</IconButton>
-						<IconButton>
-							<DeleteForeverIcon />
-						</IconButton>
-
-						<Typography>{review.title} </Typography>
-						<Typography>{review.user_review}</Typography>
-						<Typography>{review.rating}</Typography>
-						<Typography>{review.location}</Typography>
-						<Typography>{review.created_at}</Typography>
-					</CardContent>
-				</Card>
+				<EditReview
+					addReviews={addReviews}
+					currentUser={currentUser}
+					review={review}
+				/>
 			</Grid>
 		);
 	});
@@ -84,8 +63,6 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 	const handleClose = () => {
 		setOpen(false);
 	};
-
-	const [isEditing, setIsEditing] = useState(false);
 
 	return (
 		<div>
@@ -159,6 +136,5 @@ function ToyPage({currentUser, selectedToy, addReviews}) {
 		</div>
 	);
 }
-
 
 export default ToyPage;
