@@ -1,13 +1,24 @@
 import { useState } from "react"
 import {useHistory} from "react-router-dom";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+
 
 function Login({setCurrentUser}) {
+
 	const [errors, setErrors] = useState([]);
 	const history = useHistory();
 	const [formData, setFormData] = useState({
 		username: "",
-		email: ""
+		password: ""
 	});
+
+	const handleCancel = () => {
+		history.push("/home")
+	}
 
 	const handleChange = (e) => {
 		setFormData({
@@ -35,30 +46,77 @@ function Login({setCurrentUser}) {
 			}
 		});
 	}
+	console.log(formData)
 
 	return (
-		<>
-			<form onSubmit={onSubmit}>
-				<label>Username</label>
-				<input
-					type='text'
-					name='username'
-					value={formData.username}
-					onChange={handleChange}
-				/>
-
-				<label>Password</label>
-				<input
-					type='password'
-					name='password'
-					value={formData.password}
-					onChange={handleChange}
-				/>
-
-				<input type='submit' value='Log in!' />
-			</form>
-			{errors ? <div>{errors}</div> : null}
-		</>
+		<Box
+			container
+			onSubmit={onSubmit}
+			spacing={5}
+			component='form'
+			noValidate
+			autoComplete
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				"& > :not(style)": {
+					m: 5,
+					p: 4,
+					width: 300,
+					height: 300,
+				},
+			}}
+		>
+			<Paper sx={{p: 2, m: 4}}>
+				<Stack sx={{m: 2}} direction='column' justifyContent='center'>
+					<TextField
+						id='margin-normal'
+						margin='normal'
+						required
+						type='text'
+						name='username'
+						label='username'
+						value={formData.username}
+						onChange={handleChange}
+					/>
+					<TextField
+						id='margin-normal'
+						margin='normal'
+						required
+						type='password'
+						name='password'
+						label='password'
+						value={formData.password}
+						onChange={handleChange}
+					/>
+					<Stack
+						sx={{m: 2}}
+						direction='row'
+						justifyContent='center'
+						spacing={2}
+					>
+						<Button
+							onClick={handleCancel}
+							color='secondary'
+							size='small'
+							variant='contained'
+						>
+							Cancel
+						</Button>
+						<Button
+							size='small'
+							type='submit'
+							value='Log in!'
+							variant='contained'
+						>
+							Submit
+						</Button>
+					</Stack>
+				</Stack>
+				{errors ? <div>{errors}</div> : null}
+			</Paper>
+		</Box>
 	);
 }
 

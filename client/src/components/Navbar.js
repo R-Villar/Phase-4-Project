@@ -1,5 +1,4 @@
-import { NavLink } from "react-router-dom"
-import * as React from "react";
+import {NavLink, useHistory} from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,10 +11,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
-import {useHistory} from "react-router-dom";
 import ToysIcon from "@mui/icons-material/Toys";
-
+import {useState} from "react";
 
 
 
@@ -23,13 +20,13 @@ import ToysIcon from "@mui/icons-material/Toys";
 function Navbar({currentUser, setCurrentUser}) {
 	// const {username} = currentUser;
     const history = useHistory();
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [anchorElNav, setAnchorElNav] = useState(null);
+	const [anchorElUser, setAnchorElUser] = useState(null);
     const pages = ["home", "Cart"];
 
 	const settings = currentUser
-		? ["Logout"]
-		: ["Signup", "Login", "Logout"]; 
+		? ["SignOut"]
+		: ["SignUp", "LogIn"]; 
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -166,6 +163,7 @@ function Navbar({currentUser, setCurrentUser}) {
 										my: 2,
 										color: "white",
 										display: "block",
+										textDecoration: "none"
 									}}
 								>
 									{page}
@@ -184,7 +182,7 @@ function Navbar({currentUser, setCurrentUser}) {
 								{/* Avatar for User */}
 								<Avatar
 									alt='Remy'
-									src='/static/images/avatar/2.jpg'
+									// src='/static/images/avatar/2.jpg'
 								/>
 							</IconButton>
 						</Tooltip>
@@ -210,16 +208,15 @@ function Navbar({currentUser, setCurrentUser}) {
 									onClick={handleCloseUserMenu}
 									// onClick={() => console.log(setting)}
 								>
-									<Button>
 										<Typography
 											onClick={handleLogout}
 											as={NavLink}
 											to={`/${setting}`}
 											textAlign='center'
+											sx={{textDecoration: "none"}}
 										>
 											{setting}
 										</Typography>
-									</Button>
 								</MenuItem>
 							))}
 						</Menu>
@@ -237,8 +234,5 @@ function Navbar({currentUser, setCurrentUser}) {
 	//             {currentUser? <p>New Toy</p>:null}
 	//         </NavLink>
 }
-
-
- 
 
 export default Navbar
