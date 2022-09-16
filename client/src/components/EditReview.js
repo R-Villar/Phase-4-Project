@@ -27,18 +27,33 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 	const [ratingUpdate, setRatingUpdate] = useState(rating);
 	const [notAllow, setNotAllow] = useState(currentUser.id);
 
+	
+
+	// console.log(currentUser)
+
 	function updateReview(e) {
 		e.preventDefault();
+		// console.log(review)
 		const formData = {
 			user_id: currentUser.id,
 			toy_id: id,
-			// id: id,
+			id: review.id,
 			title: titleUpdate,
 			user_review: userReviewUpdate,
 			rating: ratingUpdate,
 			location: locationUpdate,
 		};
 
+
+		// function reviewUpdate() {
+		// 	// console.log(review);
+		// 	if (review.id === formData.id) {
+		// 		return formData
+		// 	} else {
+		// 		return review 
+		// 	}
+		// }
+		console.log(formData)
 		// console.log(currentUser.id ? review.user_id : false);
 
 		fetch(`/reviews/${id}`, {
@@ -57,15 +72,16 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 		return review;
 	}
 	const [disable, setDisable] = useState(currentUser.id !== review.user_id);
-	// console.log("review", review.user_id, "user", currentUser.id);
-	// console.log(disable)
+	
 	return (
 		<div>
 			{isEditing ? (
 				<Card elevation={3} sx={{maxWidth: 400}} key={review.id}>
 					<CardHeader title='User Reviews' />
 					<CardContent>
-						<IconButton disabled={disable} onClick={updateReview}>
+						<IconButton
+						//  disabled={disable} 
+						 onClick={updateReview}>
 							<EditIcon></EditIcon>
 						</IconButton>
 

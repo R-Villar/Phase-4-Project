@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
-     skip_before_action :authenticate_user
-    
+    skip_before_action :authenticate_user, except: :update
      
     #GET '/reviews'
     def index
@@ -19,7 +18,7 @@ class ReviewsController < ApplicationController
     end
 
     #PATCH '/reviews/:id'
-    def update
+    def update 
         reviews = review_id
         reviews.update!(review_params)
         render json: reviews, status: :accepted

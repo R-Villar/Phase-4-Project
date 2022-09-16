@@ -14,10 +14,8 @@ import NewToy from './components/NewToy';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState('')
-
 	const [isAuthenticated, setIsAuthenticated] = useState(true);
 	const [selectedToy, setSelectedToy] = useState([]);
-	// const updateUser = (user) => setCurrentUser(user)
 	const [toys, setToys] = useState([])
 	const [reviews, setReviews] = useState([])
 	const [errors, setErrors] = useState(false)
@@ -27,45 +25,42 @@ function App() {
 		setSelectedToy( toyObj => [...toyObj, newToyObj ])
 	  }
 
-	// console.log(cartItems)
-	console.log(selectedToy)
-	//get toys
+	console.log(reviews)
+
 	useEffect(() => {
 	fetch('/toys').then(res => {
-		// console.log(res)
 		if(res.ok){
 		res.json().then(setToys)
 		} else {
 		res.json().then((data) => {
-			// console.log(data)
 			setErrors(data.error)
 		});
 		}
 	});
 	}, [])
 
-// function handleDeleteClick(deletedReview){
-//   const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id)
-//   setReviews(updatedReviews)
-// }
+	// function handleDeleteClick(deletedReview){
+	//   const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id)
+	//   setReviews(updatedReviews)
+	// }
 
-const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
+	const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
 
-const addReviews = (review) => setReviews(current => [...current,review])
+	const addReviews = (review) => setReviews(current => [...current,review])
 
-// const updateReview = (updatedReview) => setReviews(current => {
-//   return current.map(review => {
-//    if(review.id === updatedReview.id){
-//      return updatedReview
-//    } else {
-//      return review
-//    }
-//   })
-// })
+	// const updateReview = (updatedReview) => setReviews(current => {
+	// return current.map(review => {
+	// if(review.id === updatedReview.id){
+	// 	return updatedReview
+	// } else {
+	// 	return review
+	// }
+	// })
+	// })
 
 
 
-	console.log(selectedToy);
+
 
   useEffect(() => {
 		fetch('/me').then((res) => {
@@ -91,7 +86,12 @@ const addReviews = (review) => setReviews(current => [...current,review])
 			<Switch>
 				<Route exact path='/home'>
 					<Home currentUser={currentUser} />
-					<ToyContainer toys={toys} setSelectedToy={setSelectedToy} setCartItems={setCartItems} newToyInCart={newToyInCart} />
+					<ToyContainer
+						toys={toys}
+						setSelectedToy={setSelectedToy}
+						setCartItems={setCartItems}
+						newToyInCart={newToyInCart}
+					/>
 				</Route>
 				<Route exact path='/login'>
 					<Login setCurrentUser={setCurrentUser} />
@@ -100,10 +100,11 @@ const addReviews = (review) => setReviews(current => [...current,review])
 					<Signup setCurrentUser={setCurrentUser} />
 				</Route>
 				<Route exact path='/cart'>
-					<Cart selectedToy={selectedToy}/>
+					<Cart selectedToy={selectedToy} />
 				</Route>
 				<Route exact path='/toys/:id'>
 					<ToyPage
+						setReviews={setReviews}
 						currentUser={currentUser}
 						selectedToy={selectedToy}
 						addReviews={addReviews}
