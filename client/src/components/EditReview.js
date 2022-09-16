@@ -7,9 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import {styled} from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {useParams} from "react-router-dom";
@@ -19,21 +16,17 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 
 	const [isEditing, setIsEditing] = useState(true);
 	const [errors, setErrors] = useState([]);
-
 	const {title, user_review, rating, location} = review;
 	const [titleUpdate, setTitleUpdate] = useState(title);
 	const [locationUpdate, setLocationUpdate] = useState(location);
 	const [userReviewUpdate, setUserReviewUpdate] = useState(user_review);
 	const [ratingUpdate, setRatingUpdate] = useState(rating);
-	const [notAllow, setNotAllow] = useState(currentUser.id);
 
 	
 
-	// console.log(currentUser)
-
 	function updateReview(e) {
 		e.preventDefault();
-		// console.log(review)
+
 		const formData = {
 			user_id: currentUser.id,
 			toy_id: id,
@@ -45,16 +38,7 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 		};
 
 
-		// function reviewUpdate() {
-		// 	// console.log(review);
-		// 	if (review.id === formData.id) {
-		// 		return formData
-		// 	} else {
-		// 		return review 
-		// 	}
-		// }
 		console.log(formData)
-		// console.log(currentUser.id ? review.user_id : false);
 
 		fetch(`/reviews/${id}`, {
 			method: "PATCH",
@@ -64,7 +48,7 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 			if (res.ok) {
 				res.json().then(addReviews);
 			} else {
-				res.json().then((json) => setErrors(json.errors));
+				res.json().then((errors) => setErrors(errors.errors));
 			}
 		});
 
@@ -80,7 +64,7 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 					<CardHeader title='User Reviews' />
 					<CardContent>
 						<IconButton
-						//  disabled={disable} 
+						 disabled={disable} 
 						 onClick={updateReview}>
 							<EditIcon></EditIcon>
 						</IconButton>

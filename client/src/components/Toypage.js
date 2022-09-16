@@ -3,19 +3,14 @@ import { useParams } from "react-router-dom";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import CardHeader from "@mui/material/CardHeader";
 import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 import * as React from 'react';
-import IconButton from "@mui/material/IconButton";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Popup from "./Popup";
 import Box from "@mui/material/Box";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-// import Review from "./Review";
 import EditReview from "./EditReview";
 
 
@@ -32,7 +27,6 @@ function ToyPage({
 
 	const [toy, setToy] = useState({reviews: []});
 	const [errors, setErrors] = useState([]);
-	const [formData, setFormData] = useState({});
 
 	useEffect(() => {
 		fetch(`/toys/${id}`)
@@ -43,17 +37,8 @@ function ToyPage({
 	}, [id, deleteReview, addReviews]);
 
 	const {reviews} = toy;
-	// console.log(selectedToy);
-	// console.log(toy);
 
-	//handle delete
 
-	function reviewUpdate() {
-		// console.log(review);
-		// return (
-		//     <EditReview review={review}/>
-		// )
-	}
 
 	const displayReviews = reviews.map((review) => {
 		
@@ -64,18 +49,13 @@ function ToyPage({
 				if (res.ok) {
 					deleteReview(id); // passed down from App
 				} else {
-					res.json().then((data) =>
-						setErrors(
-							Object.entries(data.errors).map(
-								(e) => `${e[0]} ${e[1]}`
-							)
-						)
-					);
+					res.json().then((json) => setErrors(json.errors));
 				}
 			});
 		}
 
 		return (
+			
 			<Box
 				sx={{
 					display: "grid",
@@ -90,8 +70,6 @@ function ToyPage({
 				}}
 				key={review.id}
 				container
-				// rowSpacing={1}
-				// columnSpacing={{xs: 1, sm: 2, md: 3}}
 			>
 				<EditReview
 					addReviews={addReviews}
@@ -123,20 +101,17 @@ function ToyPage({
 					flexWrap: "wrap",
 					gridTemplateColumns: {
 						md: "1fr",
-						// md: ".5fr .5fr",
-						// lg: ".5fr .5fr .5fr",
-						// xl: ".5fr .5fr .5fr .5fr",
 					},
 					"& > :not(style)": {
 						m: 3,
 					},
 				}}
 			>
-				<Card sx={{maxWidth: 400}}>
+				<Card elevation={3} sx={{maxWidth: 400}}>
 					<CardActionArea>
 						<CardMedia
 							component='img'
-							height='400'
+							height='500'
 							image={toy.image}
 							alt='toy image'
 						/>
@@ -194,6 +169,7 @@ function ToyPage({
 						</CardContent>
 					</CardActionArea>
 				</Card>
+				{errors ? <div>{errors}</div> : null}
 			</Box>
 			<Box
 				sx={{

@@ -181,8 +181,8 @@ function Navbar({currentUser, setCurrentUser}) {
 							>
 								{/* Avatar for User */}
 								<Avatar
-									alt='Remy'
-									// src='/static/images/avatar/2.jpg'
+									alt=''
+									src={ currentUser ? (currentUser.icon) : ('/static/images/avatar/2.jpg')}
 								/>
 							</IconButton>
 						</Tooltip>
