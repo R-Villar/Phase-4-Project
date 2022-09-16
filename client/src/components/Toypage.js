@@ -66,6 +66,7 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 				}
 			  })
 			}
+			
 
 		return (
 			<Box

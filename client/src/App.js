@@ -49,6 +49,7 @@ function App() {
 //   setReviews(updatedReviews)
 // }
 
+
 const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
 
 const addReviews = (review) => setReviews(current => [...current,review])
@@ -91,7 +92,13 @@ const addReviews = (review) => setReviews(current => [...current,review])
 			<Switch>
 				<Route exact path='/home'>
 					<Home currentUser={currentUser} />
-					<ToyContainer toys={toys} setSelectedToy={setSelectedToy} setCartItems={setCartItems} newToyInCart={newToyInCart} />
+					<ToyContainer 
+					toys={toys} 
+					setSelectedToy={setSelectedToy} 
+					setCartItems={setCartItems} 
+					newToyInCart={newToyInCart} 
+					currentUser={currentUser}
+					/>
 				</Route>
 				<Route exact path='/login'>
 					<Login setCurrentUser={setCurrentUser} />
@@ -100,7 +107,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 					<Signup setCurrentUser={setCurrentUser} />
 				</Route>
 				<Route exact path='/cart'>
-					<Cart selectedToy={selectedToy}/>
+					<Cart selectedToy={selectedToy} currentUser={currentUser}/>
 				</Route>
 				<Route exact path='/toys/:id'>
 					<ToyPage

@@ -18,8 +18,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-function Cart({selectedToy}) {
+function Cart({selectedToy, currentUser}) {
 
     let totalPrice = selectedToy.reduce(function(accumulator, item) {
         return accumulator + item.price
@@ -31,8 +34,12 @@ function Cart({selectedToy}) {
             
             
                     <TableCell component="th" scope="row">{toy.name}</TableCell>
-                    <TableCell align="right">${toy.price}</TableCell>
-                   
+                    <TableCell align="right">${toy.price}
+                        <Grid item xs={8}>
+                            <DeleteIcon onClick = {()=>{console.log("clicked")}}/>
+                        </Grid>
+                    </TableCell>
+                    
                     
                  
            
@@ -43,7 +50,7 @@ function Cart({selectedToy}) {
 
     return(
         <div>
-             
+             {currentUser ? 
               <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 200 }} aria-label="simple table">
                     <TableHead>
@@ -67,7 +74,8 @@ function Cart({selectedToy}) {
                     <TableCell colSpan={2}>Total ${totalPrice}</TableCell>
                 </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer> : null
+        }   
         </div>
     )
 }
