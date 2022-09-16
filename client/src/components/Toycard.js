@@ -12,31 +12,26 @@ import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
-const labels = {
-  0.5: 'Useless',
-  1: 'Useless+',
-  1.5: 'Poor',
-  2: 'Poor+',
-  2.5: 'Ok',
-  3: 'Ok+',
-  3.5: 'Good',
-  4: 'Good+',
-  4.5: 'Excellent',
-  5: 'Excellent+',
-};
+// const labels = {
+//   0.5: 'Useless',
+//   1: 'Useless+',
+//   1.5: 'Poor',
+//   2: 'Poor+',
+//   2.5: 'Ok',
+//   3: 'Ok+',
+//   3.5: 'Good',
+//   4: 'Good+',
+//   4.5: 'Excellent',
+//   5: 'Excellent+',
+// };
 
 
 function ToyCard({toy, setSelectedToy, newToyInCart,currentUser}) {
 	const value = 3.5;
-	const {id} = toy;
-	//  console.log(toy)
-	
-	const [show, setShow] = useState(false)
 
 	// adds items from cart
 	function handleAddToCart() {
 		newToyInCart(toy)
-		//console.log(toy)
 	}
 
 	function selectedToy() {
@@ -44,7 +39,6 @@ function ToyCard({toy, setSelectedToy, newToyInCart,currentUser}) {
 	}
 
 	return (
-
 		<Box
 			sx={{
 				display: "grid",
@@ -92,7 +86,6 @@ function ToyCard({toy, setSelectedToy, newToyInCart,currentUser}) {
 				</CardContent>
 			</Paper>
 		</Box>
-
 	);
 }
 

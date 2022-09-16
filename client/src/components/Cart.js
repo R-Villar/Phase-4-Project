@@ -31,27 +31,23 @@ function Cart({selectedToy, currentUser}) {
     const displayToysInCart = selectedToy.map((toy)=> {
         return(
            <div>
-            
-            
-                    <TableCell component="th" scope="row">{toy.name}</TableCell>
-                    <TableCell align="right">${toy.price}
+
+                <TableCell component="th" scope="row">{toy.name}</TableCell>
+                <TableCell align="right">${toy.price}</TableCell>
                         <Grid item xs={8}>
                             <DeleteIcon onClick = {()=>{console.log("clicked")}}/>
                         </Grid>
                     </TableCell>
-                    
-                    
-                 
-           
            </div>
-  
         )
     })
 
     return(
         <div>
+            <TableContainer component={Paper}>
              {currentUser ? 
               <TableContainer component={Paper}>
+
                 <Table sx={{ minWidth: 200 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -59,16 +55,13 @@ function Cart({selectedToy, currentUser}) {
                             <TableCell>Price</TableCell>
                           
                             {/* <TableCell >Price</TableCell> */}
-                                {/* <Avatar style={{width: 100, height: 100, display: 'inline-block'}}src={toy.image}/> */}
+                            {/* <Avatar style={{width: 100, height: 100, display: 'inline-block'}}src={toy.image}/> */}
                         </TableRow>
                     </TableHead>
                 
                 <TableBody>
                     <TableRow>
-                        
                         {displayToysInCart}
-                        
-                       
                         {/* <TableCell align="right">Total Price${totalPrice}</TableCell> */}
                     </TableRow>
                     <TableCell colSpan={2}>Total ${totalPrice}</TableCell>

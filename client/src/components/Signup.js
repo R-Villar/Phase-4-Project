@@ -10,10 +10,13 @@ function Signup({setCurrentUser}) {
 	const [errors, setErrors] = useState([]);
 	const history = useHistory();
 	const [formData, setFormData] = useState({
+		icon: '',
 		username: "",
 		email: "",
-		password: ""
+		password: "",
+		admin: false
 	});
+	console.log(formData)
 
 	const handleCancel = () => {
 		history.push("/home");
@@ -62,7 +65,7 @@ function Signup({setCurrentUser}) {
 					m: 5,
 					p: 4,
 					width: 300,
-					height: 300,
+					height: 400,
 				},
 			}}
 		>
@@ -76,6 +79,17 @@ function Signup({setCurrentUser}) {
 						label='Username'
 						name='username'
 						value={formData.username}
+						onChange={handleChange}
+					/>
+
+					<TextField
+						id='margin-normal'
+						margin='normal'
+						required
+						type='text'
+						label='Icon'
+						name='icon'
+						value={formData.icon}
 						onChange={handleChange}
 					/>
 
