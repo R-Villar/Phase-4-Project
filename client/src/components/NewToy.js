@@ -3,8 +3,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
-function NewToy(){
 
+
+function NewToy(){
+  // this is the form we never used
     const [formData, setFormData] = useState({
         // id:,
         name: '',
@@ -26,21 +28,21 @@ console.log(formData)
     //     e.preventDefault()
 
 
-    //     fetch('/toys',{
-    //         method:'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body:JSON.stringify(formData)
-    //     })
-    //     .then(res => {
-    //         if(res.ok){
-    //         res.json().then(addReviews)
+        // fetch('/toys',{
+        //     method:'POST',
+        //     headers: {'Content-Type': 'application/json'},
+        //     body:JSON.stringify(formData)
+        // })
+        // .then(res => {
+        //     if(res.ok){
+        //     res.json().then(addReviews)
 
-    //         } else {
-    //         //Display errors
-    //         res.json().then((json) => setErrors(json.errors));
-    //         }
-    //     })
-    //     }
+        //     } else {
+        //     //Display errors
+        //     res.json().then((json) => setErrors(json.errors));
+        //     }
+        // })
+        
 
     return(
         <Box

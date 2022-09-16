@@ -23,7 +23,6 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 	const [ratingUpdate, setRatingUpdate] = useState(rating);
 
 	
-
 	function updateReview(e) {
 		e.preventDefault();
 
