@@ -25,10 +25,10 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 // };
 
 
-function ToyCard({toy, setSelectedToy, newToyInCart}) {
+function ToyCard({toy, setSelectedToy, newToyInCart,currentUser}) {
 	const value = 3.5;
 
-	// removes items from cart
+	// adds items from cart
 	function handleAddToCart() {
 		newToyInCart(toy)
 	}
@@ -60,15 +60,16 @@ function ToyCard({toy, setSelectedToy, newToyInCart}) {
 						image={toy.image}
 						alt='toy image'
 					/>
-
+					${toy.price}
 					<Typography align='center' color='textPrimary'>
 						<Link to={`/toys/${toy.id}`} onClick={selectedToy}>
 							{toy.name}
 						</Link>
 					</Typography>
-					<ShoppingCartOutlinedIcon 
+					{currentUser?<ShoppingCartOutlinedIcon 
 						onClick={handleAddToCart}
-					></ShoppingCartOutlinedIcon>
+					></ShoppingCartOutlinedIcon>:null}
+					
 					<Rating
 						name='text-feedback'
 						value={value}

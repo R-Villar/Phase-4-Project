@@ -2,13 +2,19 @@ import ToyCard from "./Toycard"
 import { Container } from "@mui/system";
 import Box from "@mui/material/Box";
 
-function ToyContainer({toys, setSelectedToy, setCartItems, newToyInCart}) {
+function ToyContainer({toys, setSelectedToy, setCartItems, newToyInCart, currentUser}) {
   // Mapping thru the data to display toy cards
 	const displayToys = toys.map((toy) => {
 		return (
 			<Container  fixed key={toy.id}>	
 
-				<ToyCard setSelectedToy={setSelectedToy} toy={toy} setCartItems={setCartItems} newToyInCart = {newToyInCart}/>
+				<ToyCard 
+				setSelectedToy={setSelectedToy} 
+				toy={toy} 
+				etCartItems={setCartItems} 
+				newToyInCart = {newToyInCart}
+				currentUser={currentUser}
+				/>
 			</Container>
 		);
 	});
