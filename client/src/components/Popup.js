@@ -42,7 +42,6 @@ function Popup({open, handleClose, addReviews, currentUser}) {
         })
       }
 
-     console.log(formData)
     return (
 		<div>
 			<Dialog open={open} onClose={handleClose}>
