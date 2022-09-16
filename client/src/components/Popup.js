@@ -4,13 +4,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import * as React from 'react';
 import {useState} from 'react';
-import Input from '@mui/material/Input';
 import {useParams} from "react-router-dom";
-
 function Popup({open, handleClose, addReviews, currentUser}) {
 
     let {id} = useParams();
@@ -46,7 +42,7 @@ function Popup({open, handleClose, addReviews, currentUser}) {
         })
       }
 
-     
+     console.log(formData)
     return (
 		<div>
 			<Dialog open={open} onClose={handleClose}>
