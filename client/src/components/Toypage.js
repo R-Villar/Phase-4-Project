@@ -20,13 +20,19 @@ import EditReview from "./EditReview";
 
 
 
-function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, deleteReview}) {
-
+function ToyPage({
+	currentUser,
+	selectedToy,
+	addReviews,
+	handleDeleteClick,
+	deleteReview,
+	setReviews
+}) {
 	let {id} = useParams();
 
 	const [toy, setToy] = useState({reviews: []});
 	const [errors, setErrors] = useState([]);
-	const [ formData, setFormData ] = useState({ })
+	const [formData, setFormData] = useState({});
 
 	useEffect(() => {
 		fetch(`/toys/${id}`)
@@ -34,39 +40,40 @@ function ToyPage({currentUser, selectedToy, addReviews, handleDeleteClick, delet
 			.then((toy) => {
 				setToy(toy);
 			});
-
-	}, [id, deleteReview,  addReviews]);
-	console.log(toy)
-
+	}, [id, deleteReview, addReviews]);
 
 	const {reviews} = toy;
 	// console.log(selectedToy);
 	// console.log(toy);
 
-	 //handle delete
+	//handle delete
+
+	function reviewUpdate() {
+		// console.log(review);
+		// return (
+		//     <EditReview review={review}/>
+		// )
+	}
 
 	const displayReviews = reviews.map((review) => {
-
-        function reviewUpdate() {
-			console.log(review);
-            // return (
-            //     <EditReview review={review}/>
-            // )
-		}
-		function handleDelete(){
-			    fetch(`/reviews/${review.id}`, {
-			      method: "DELETE",
-			   })
-			   
-			 .then(res => {
-				if(res.ok){
-				  deleteReview(id) // passed down from App
+		
+		function handleDelete() {
+			fetch(`/reviews/${review.id}`, {
+				method: "DELETE",
+			}).then((res) => {
+				if (res.ok) {
+					deleteReview(id); // passed down from App
 				} else {
-				  res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
+					res.json().then((data) =>
+						setErrors(
+							Object.entries(data.errors).map(
+								(e) => `${e[0]} ${e[1]}`
+							)
+						)
+					);
 				}
-			  })
-			}
-			
+			});
+		}
 
 		return (
 			<Box

@@ -14,10 +14,8 @@ import NewToy from './components/NewToy';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState('')
-
 	const [isAuthenticated, setIsAuthenticated] = useState(true);
 	const [selectedToy, setSelectedToy] = useState([]);
-	// const updateUser = (user) => setCurrentUser(user)
 	const [toys, setToys] = useState([])
 	const [reviews, setReviews] = useState([])
 	const [errors, setErrors] = useState(false)
@@ -27,46 +25,44 @@ function App() {
 		setSelectedToy( toyObj => [...toyObj, newToyObj ])
 	  }
 
-	// console.log(cartItems)
-	console.log(selectedToy)
-	//get toys
+	console.log(reviews)
+
 	useEffect(() => {
 	fetch('/toys').then(res => {
-		// console.log(res)
 		if(res.ok){
 		res.json().then(setToys)
 		} else {
 		res.json().then((data) => {
-			// console.log(data)
 			setErrors(data.error)
 		});
 		}
 	});
 	}, [])
 
-// function handleDeleteClick(deletedReview){
-//   const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id)
-//   setReviews(updatedReviews)
-// }
+	// function handleDeleteClick(deletedReview){
+	//   const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id)
+	//   setReviews(updatedReviews)
+	// }
 
 
-const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
-
-const addReviews = (review) => setReviews(current => [...current,review])
-
-// const updateReview = (updatedReview) => setReviews(current => {
-//   return current.map(review => {
-//    if(review.id === updatedReview.id){
-//      return updatedReview
-//    } else {
-//      return review
-//    }
-//   })
-// })
+	const deleteReview = (id) => setReviews(current => current.filter(r => r.id !== id)) 
 
 
+	const addReviews = (review) => setReviews(current => [...current,review])
 
-	console.log(selectedToy);
+	// const updateReview = (updatedReview) => setReviews(current => {
+	// return current.map(review => {
+	// if(review.id === updatedReview.id){
+	// 	return updatedReview
+	// } else {
+	// 	return review
+	// }
+	// })
+	// })
+
+
+
+
 
   useEffect(() => {
 		fetch('/me').then((res) => {
@@ -111,6 +107,7 @@ const addReviews = (review) => setReviews(current => [...current,review])
 				</Route>
 				<Route exact path='/toys/:id'>
 					<ToyPage
+						setReviews={setReviews}
 						currentUser={currentUser}
 						selectedToy={selectedToy}
 						addReviews={addReviews}
