@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardHeader from "@mui/material/CardHeader";
-import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-import Grid from "@mui/material/Grid";
-import ToyPage from './Toypage';
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import Alert from '@mui/material/Alert';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 

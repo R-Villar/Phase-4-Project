@@ -29,7 +29,7 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 
 	
 
-	// console.log(currentUser)
+	console.log(currentUser)
 
 	function updateReview(e) {
 		e.preventDefault();
@@ -80,7 +80,7 @@ function EditReview({review, currentUser, addReviews, handleDelete}) {
 					<CardHeader title='User Reviews' />
 					<CardContent>
 						<IconButton
-						//  disabled={disable} 
+						disabled={disable} 
 						 onClick={updateReview}>
 							<EditIcon></EditIcon>
 						</IconButton>
