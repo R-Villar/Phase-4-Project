@@ -18,7 +18,7 @@ function App() {
 	const [toys, setToys] = useState([])
 	const [reviews, setReviews] = useState([])
 	const [errors, setErrors] = useState(false)
-	const [ cartItems, setCartItems ] = useState([])
+	
 
 	const newToyInCart = newToyObj => {
 		setSelectedToy( toyObj => [...toyObj, newToyObj ])
@@ -73,7 +73,6 @@ function App() {
 					<ToyContainer 
 					toys={toys} 
 					setSelectedToy={setSelectedToy} 
-					setCartItems={setCartItems} 
 					newToyInCart={newToyInCart} 
 					currentUser={currentUser}
 					/>
